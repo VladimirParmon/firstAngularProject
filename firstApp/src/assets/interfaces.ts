@@ -1,6 +1,18 @@
 interface VideoInfo {
   kind: string;
   etag: string;
+  pageInfo: PageInfo;
+  items: VideoItem[];
+}
+
+interface PageInfo {
+  totalResults: number;
+  resultsPerPage: number;
+}
+
+interface VideoItem {
+  kind: string;
+  etag: string;
   id: string;
   snippet: Snippet;
   statistics: Statistics;
