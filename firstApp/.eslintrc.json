@@ -12,6 +12,7 @@
         "project": [
           "tsconfig.json"
         ],
+        // "tsconfigRootDir": "firstApp",
         "createDefaultProgram": true
       },
       "extends": [
@@ -34,7 +35,8 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@angular-eslint/no-empty-lifecycle-method": "off"
       }
     },
     {
@@ -44,7 +46,9 @@
       "extends": [
         "plugin:@angular-eslint/template/recommended"
       ],
-      "rules": {}
+      "rules": {
+
+      }
     }
   ]
 }
