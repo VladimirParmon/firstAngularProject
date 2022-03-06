@@ -1,5 +1,9 @@
 <app-header></app-header>
-<p>Body of the app</p>
-
+<div id="pageContent">
+  <div id="listOfVideos">
+    <app-video-card *ngFor="let video of infoList" [video]="video"></app-video-card>
+  </div>
+</div>
 
 <router-outlet></router-outlet>
+<!-- [stuff]="stuff" -->

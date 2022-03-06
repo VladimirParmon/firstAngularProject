@@ -1,4 +1,4 @@
-interface VideoInfo {
+export interface VideoInfo {
   kind: string;
   etag: string;
   pageInfo: PageInfo;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-likes-and-views-counter',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LikesAndViewsCounterComponent implements OnInit {
   constructor() {}
-
+  @Input() stats: any;
   ngOnInit(): void {
     console.log('like and views counter onInit');
   }

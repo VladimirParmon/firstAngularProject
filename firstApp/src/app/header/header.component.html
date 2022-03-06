@@ -1,2 +1,15 @@
-<p>Header</p>
-<app-sorting></app-sorting>
+<header [@headerOpenClose]="isOpen ? 'open' : 'closed'">
+  <div id="headerMainContainer">
+    <div id="headerSearchBar">
+      <img src="../../assets/svg/logo.svg" alt="logo">
+      <input type="text" placeholder="What do you want to find?" id="searchbar">
+      <button id="headerSearchButton">Search</button>
+      <button id="searchingOptionsButton" (click)="toggle()"></button>
+    </div>
+    <div id="headerLogin">
+      <span>Your name</span>
+      <button id="headerLoginButton"></button>
+    </div>
+  </div>
+  <app-sorting></app-sorting>
+</header>
