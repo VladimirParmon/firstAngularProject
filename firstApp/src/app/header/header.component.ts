@@ -29,10 +29,7 @@ export class HeaderComponent implements OnInit {
   toggle() {
     this.isOpen = !this.isOpen;
   }
+  ngOnInit(): void {}
 
   constructor() {}
-
-  ngOnInit(): void {
-    console.log('header onInit');
-  }
 }

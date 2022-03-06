@@ -8,7 +8,5 @@ import { Component, OnInit, Input } from '@angular/core';
 export class LikesAndViewsCounterComponent implements OnInit {
   constructor() {}
   @Input() stats: any;
-  ngOnInit(): void {
-    console.log('like and views counter onInit');
-  }
+  ngOnInit(): void {}
 }
