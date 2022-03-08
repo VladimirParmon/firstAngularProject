@@ -6,5 +6,6 @@ import { SortingComponent } from './components/header/sorting/sorting.component'
 @NgModule({
   declarations: [HeaderComponent, SortingComponent],
   imports: [CommonModule],
+  exports: [HeaderComponent],
 })
 export class CoreModule {}
