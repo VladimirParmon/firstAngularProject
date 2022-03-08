@@ -54,3 +54,7 @@ interface Statistics {
   favoriteCount: string;
   commentCount: string;
 }
+
+export interface Storage {
+  [key: string]: boolean | string;
+}

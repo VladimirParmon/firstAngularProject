@@ -7,10 +7,15 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class DataService {
   areVideosSeen: boolean = false;
   areVideosSeenChange: Subject<boolean> = new Subject<boolean>();
+  // isDateDescSorting: boolean = false;
+  // isDateDescSortingChange: Subject<boolean> = new Subject<boolean>();
+  // isViewsDescSorting: boolean = false;
+  // isViewsDescSortingChange: Subject<boolean> = new Subject<boolean>();
   sortingStatus: string = 'default';
   sortingStatusChange: Subject<string> = new Subject<string>();
   sortingString: string = '';
   sortingStringChange: Subject<string> = new Subject<string>();
+
   constructor() {
     this.sortingStatusChange.subscribe((value) => {
       this.sortingStatus = value;
@@ -21,6 +26,12 @@ export class DataService {
     this.areVideosSeenChange.subscribe((value) => {
       this.areVideosSeen = value;
     });
+    // this.isDateDescSortingChange.subscribe((value) => {
+    //   this.isDateDescSorting = value;
+    // });
+    // this.isViewsDescSortingChange.subscribe((value) => {
+    //   this.isViewsDescSorting = value;
+    // });
   }
   updateSorting(value: string) {
     this.sortingStatusChange.next(value);

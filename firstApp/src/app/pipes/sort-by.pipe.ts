@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortByPipe implements PipeTransform {
   transform(value: any, ...args: any[]): any {
-    const [sortingCriterion, sortingString] = args;
+    const [sortingCriterion, sortingString, inDescOrder] = args;
     let result = value;
 
     if (value) {

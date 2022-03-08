@@ -12,6 +12,7 @@ import { VideoCardComponent } from './list of videos/video-card/video-card.compo
 import { LikesAndViewsCounterComponent } from './list of videos/likes-and-views-counter/likes-and-views-counter.component';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { DataService } from './data.service';
+import { SortOrderPipe } from './pipes/sort-order.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DataService } from './data.service';
     VideoCardComponent,
     LikesAndViewsCounterComponent,
     SortByPipe,
+    SortOrderPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HttpClientModule, FormsModule],
   providers: [DataService],

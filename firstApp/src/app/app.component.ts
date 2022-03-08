@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { VideoInfo } from 'src/assets/interfaces';
@@ -14,6 +14,9 @@ export class AppComponent implements OnInit {
   infoList!: any;
   sorting = 'default';
   searchString = '';
+  inDescOrder = false;
+  inDescOrderDate = false;
+  inDescOrderViews = false;
   private _jsonURL = '../../assets/response.json';
 
   constructor(private http: HttpClient, private service: DataService) {
@@ -27,6 +30,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     this.service.sortingStatusChange.subscribe((info: any) => {
+      if (info === this.sorting) this.flipOrder(info);
       this.sorting = info;
     });
     this.service.sortingStringChange.subscribe((info: any) => {
@@ -36,7 +40,13 @@ export class AppComponent implements OnInit {
       this.isSeen = info;
     });
   }
-  // updateSearchingRequirements(value: any) {
-  //   this.service.updateSorting(value);
-  // }
+  flipOrder(info: string) {
+    if (info === 'date') {
+      this.inDescOrderDate = !this.inDescOrderDate;
+      this.inDescOrder = this.inDescOrderDate;
+    } else if (info === 'views') {
+      this.inDescOrderViews = !this.inDescOrderViews;
+      this.inDescOrder = this.inDescOrderViews;
+    }
+  }
 }

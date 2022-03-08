@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/data.service';
+import { storage } from 'src/storage';
 
 @Component({
   selector: 'app-sorting',
@@ -8,13 +9,9 @@ import { DataService } from 'src/app/data.service';
 })
 export class SortingComponent implements OnInit {
   constructor(private service: DataService) {}
-  sorting = 'default';
 
-  ngOnInit() {
-    this.service.sortingStatusChange.subscribe((info: any) => {
-      this.sorting = info;
-    });
-  }
+  ngOnInit() {}
+
   updateSearchingRequirements(value: any) {
     this.service.updateSorting(value);
   }
