@@ -1,0 +1,10 @@
+<div class="card"
+  [class.red]="checkDate() === 'red'"
+  [class.green]="checkDate() === 'green'"
+  [class.blue]="checkDate() === 'blue'"
+  >
+  <img src={{video.snippet.thumbnails.standard.url}} alt={{video.snippet.title}}>
+  <app-likes-and-views-counter [stats]="video.statistics"></app-likes-and-views-counter>
+  <p>{{ video.snippet.title }}</p>
+  <button>more...</button>
+</div>
