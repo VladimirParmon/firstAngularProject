@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div id="pageContent">
-  <div id="listOfVideos">
+  <div id="listOfVideos" *ngIf="isSeen">
     <app-video-card *ngFor="let video of infoList | sortBy: sorting:searchString" [video]="video"></app-video-card>
   </div>
 </div>

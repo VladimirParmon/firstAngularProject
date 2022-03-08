@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, query } from '@angular/animations';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-header',
@@ -31,5 +32,10 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {}
 
-  constructor() {}
+  constructor(private service: DataService) {}
+
+  toggleList() {
+    const status = !this.service.areVideosSeen;
+    this.service.updateList(status);
+  }
 }

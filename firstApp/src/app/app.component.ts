@@ -10,6 +10,7 @@ import { DataService } from 'src/app/data.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  isSeen: boolean;
   infoList!: any;
   sorting = 'default';
   searchString = '';
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
     this.getJSON().subscribe((data) => {
       this.infoList = data.items;
     });
+    this.isSeen = this.service.areVideosSeen;
   }
   public getJSON(): Observable<any> {
     return this.http.get(this._jsonURL);
@@ -29,6 +31,9 @@ export class AppComponent implements OnInit {
     });
     this.service.sortingStringChange.subscribe((info: any) => {
       this.searchString = info;
+    });
+    this.service.areVideosSeenChange.subscribe((info: any) => {
+      this.isSeen = info;
     });
   }
   // updateSearchingRequirements(value: any) {
