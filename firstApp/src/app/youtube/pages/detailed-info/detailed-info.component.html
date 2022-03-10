@@ -1,1 +1,15 @@
-<p>detailed-info works!</p>
+<app-header></app-header>
+<div id="pageContent">
+  <div id="megaCard">
+    <img src={{videoInfo.snippet.thumbnails.maxres.url}} alt={{videoInfo.snippet.title}}>
+    <div id="smallCard">
+      <div id="title">
+        <h2>{{ videoInfo.snippet.title }}</h2>
+        <p>{{videoInfo.snippet.publishedAt | date:'EEEE, MMMM MM, y'}}</p>
+      </div>
+      <h3>Description:</h3>
+      <p>{{ videoInfo.snippet.description.slice(0, 350)}}...</p>
+      <app-likes-and-views-counter [stats]="videoInfo.statistics"></app-likes-and-views-counter>
+    </div>
+  </div>
+</div>

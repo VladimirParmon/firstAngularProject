@@ -1,0 +1,78 @@
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#window,
+#loginForm,
+#registrationForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 350px;
+  padding: 30px 20px 30px 20px;
+  border-radius: 18px;
+}
+
+#loginForm,
+#registrationForm {
+  background-color: #f2f2f2;
+  position: absolute;
+}
+
+#window {
+  span {
+    margin: 0 15px 15px 0;
+    align-self: flex-start;
+    font-weight: bold;
+    font-size: 22px;
+  }
+}
+
+input {
+  height: 40px;
+  width: 100%;
+  border: none;
+  background-color: #e0e0e0;
+  padding: 0 10px;
+}
+
+#loginForm input:not(:last-child),
+#registrationForm input:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.button-wrapper {
+  display: flex;
+
+  button {
+    border: none;
+  }
+}
+
+.button-wrapper button:first-child {
+  text-decoration: underline;
+  color: #2f80ed;
+}
+
+.button-wrapper button:last-child {
+  margin-left: 15px;
+  background-color: #2f80ed;
+  width: 120px;
+  height: 30px;
+  border-radius: 5px;
+  color: white;
+}
+
+#pageContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+}

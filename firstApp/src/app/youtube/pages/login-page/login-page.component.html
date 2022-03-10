@@ -1,1 +1,27 @@
-<p>login-page works!</p>
+<app-header></app-header>
+<form>
+  <div id="pageContent" [@windowTransition]>
+    <div id="window">
+      <div id="loginForm" *ngIf="isLogin" [@windowTransition]>
+        <span>Login</span>
+        <input type="text" id="login-name" autocomplete="off" placeholder="Введите имя" required>
+        <input type="text" id="login-password" autocomplete="off" placeholder="Введите пароль" required>
+        <div class="button-wrapper">
+          <button (click)="menuFlipper()">Registration</button>
+          <button>Login</button>
+        </div>
+      </div>
+      <div id="registrationForm" *ngIf="!isLogin" [@windowTransition]>
+        <span>Registration</span>
+        <input type="text" id="register-firstname" autocomplete="off" placeholder="Введите имя" required>
+        <input type="text" id="register-lastname" autocomplete="off" placeholder="Введите фамилию" required>
+        <input type="text" id="register-mail" autocomplete="off" placeholder="Введите почту" required>
+        <input type="text" id="register-password" autocomplete="off" placeholder="Введите пароль" required>
+        <div class="button-wrapper">
+          <button (click)="menuFlipper()">Login</button>
+          <button>Registration</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

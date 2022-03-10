@@ -22,7 +22,7 @@ const routes: Routes = [
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
   },
   {
-    path: '404',
+    path: '**',
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
   },
   {

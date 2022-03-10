@@ -35,4 +35,6 @@ export class DataService {
   updateList(value: boolean) {
     this.areVideosSeenChange.next(value);
   }
+
+  videoInfo: any;
 }

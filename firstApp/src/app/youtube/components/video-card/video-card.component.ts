@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-video-card',
@@ -7,9 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class VideoCardComponent implements OnInit {
   @Input() video: any;
+  constructor(private service: DataService) {}
   ngOnInit(): void {
     this.checkDate();
   }
+
   checkDate() {
     let result = 'red';
     const date = new Date();
@@ -29,5 +32,9 @@ export class VideoCardComponent implements OnInit {
     }
 
     return result;
+  }
+
+  pushForRouting() {
+    this.service.videoInfo = this.video;
   }
 }

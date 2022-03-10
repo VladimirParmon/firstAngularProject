@@ -5,7 +5,7 @@ import { Page404Component } from './page404.component';
 
 const routes: Routes = [
   {
-    path: '404',
+    path: '**',
     component: Page404Component,
   },
 ];
