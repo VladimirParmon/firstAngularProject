@@ -18,6 +18,5 @@ export class RoutingGuardGuard implements CanActivate {
       this.router.navigate(['login']);
     }
     return loginStatus;
-    return loginStatus;
   }
 }

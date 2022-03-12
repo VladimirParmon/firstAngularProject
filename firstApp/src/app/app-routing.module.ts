@@ -8,15 +8,15 @@ const routes: Routes = [
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
   },
   {
-    path: 'login',
-    loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
+    path: '',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: '**',
-    loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
+    path: '',
+    loadChildren: () => import('./shared/shared.module').then((m) => m.SharedModule),
   },
   {
-    path: 'detailed-info',
+    path: '',
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
   },
 ];
