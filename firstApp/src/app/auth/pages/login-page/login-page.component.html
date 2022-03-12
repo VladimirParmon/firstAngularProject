@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div id="pageContent" [@windowTransition]>
+  <div id="window">
+      <form (ngSubmit)="onSubmitLogin()">
+        <div id="loginForm" *ngIf="isLoginWindow" [@windowTransition]>
+          <span>Login</span>
+          <input type="text" id="login-name" #loginName autocomplete="off" placeholder="Введите имя" required>
+          <input type="text" id="login-password" #loginPassword autocomplete="off" placeholder="Введите пароль" required>
+          <div class="button-wrapper">
+            <button type="button" (click)="menuFlipper()">Registration</button>
+            <button>Login</button>
+          </div>
+        </div>
+      </form>
+      <form (ngSubmit)="onSubmitReg()">
+        <div id="registrationForm" *ngIf="!isLoginWindow" [@windowTransition]>
+          <span>Registration</span>
+          <input type="text" id="register-firstname" #regFirstName autocomplete="off" placeholder="Введите имя" required>
+          <input type="text" id="register-lastname" #regLastName autocomplete="off" placeholder="Введите фамилию" required>
+          <input type="text" id="register-mail" #regMail autocomplete="off" placeholder="Введите почту" required>
+          <input type="text" id="register-password" #regPassword autocomplete="off" placeholder="Введите пароль" required>
+          <div class="button-wrapper">
+            <button type="button" (click)="menuFlipper()">Login</button>
+            <button>Registration</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
