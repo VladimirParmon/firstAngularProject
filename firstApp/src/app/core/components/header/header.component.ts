@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, query } from '@angular/animations';
 import { DataService } from 'src/app/youtube/services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -32,10 +33,14 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {}
 
-  constructor(private service: DataService) {}
+  constructor(private service: DataService, private router: Router) {}
 
   toggleList() {
     const status = !this.service.areVideosSeen;
     this.service.updateList(status);
+  }
+
+  goHome() {
+    this.router.navigate(['']);
   }
 }

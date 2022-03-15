@@ -1,7 +1,7 @@
 <header [@headerOpenClose]="isOpen ? 'open' : 'closed'">
   <div id="headerMainContainer">
     <div id="headerSearchBar">
-      <img src="../../../../assets/svg/logo.svg" alt="logo">
+      <img src="../../../../assets/svg/logo.svg" alt="logo" (click)="goHome()">
       <input type="text" placeholder="What do you want to find?" id="searchbar">
       <button id="headerSearchButton" (click)="toggleList()">Search</button>
       <button id="searchingOptionsButton" (click)="toggle()"></button>
