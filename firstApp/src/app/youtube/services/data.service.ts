@@ -1,29 +1,39 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  switchMap,
+  map,
+  mergeMap,
+  tap,
+  debounceTime,
+  distinctUntilChanged,
+  catchError,
+  of,
+  throwError,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  areVideosSeen: boolean = false;
-  areVideosSeenChange: Subject<boolean> = new Subject<boolean>();
+  sortingStatus: Observable<string>;
+  sortingStatusChange = new BehaviorSubject<string>('default');
 
-  sortingStatus: string = 'default';
-  sortingStatusChange: Subject<string> = new Subject<string>();
+  sortingString: Observable<string>;
+  sortingStringChange = new BehaviorSubject<string>('');
 
-  sortingString: string = '';
-  sortingStringChange: Subject<string> = new Subject<string>();
+  videosInfo: Observable<any>;
+  videosInfoChange = new BehaviorSubject<any>('');
 
-  constructor() {
-    this.sortingStatusChange.subscribe((value) => {
-      this.sortingStatus = value;
-    });
-    this.sortingStringChange.subscribe((value) => {
-      this.sortingString = value;
-    });
-    this.areVideosSeenChange.subscribe((value) => {
-      this.areVideosSeen = value;
-    });
+  detailedVideoInfo: any;
+  errorSpan: string = '';
+
+  constructor(private http: HttpClient) {
+    this.sortingStatus = this.sortingStatusChange.asObservable();
+    this.sortingString = this.sortingStringChange.asObservable();
+    this.videosInfo = this.videosInfoChange.asObservable().pipe(debounceTime(1000), distinctUntilChanged());
   }
 
   updateSorting(value: string) {
@@ -32,9 +42,40 @@ export class DataService {
   updateString(value: string) {
     this.sortingStringChange.next(value);
   }
-  updateList(value: boolean) {
-    this.areVideosSeenChange.next(value);
+
+  updateInfo(value: any) {
+    this.videosInfoChange.next(value);
   }
 
-  videoInfo: any;
+  private fetchSearchResults(searchString: string) {
+    return this.http.get(`search?q=${searchString}&maxResults=15`);
+  }
+
+  private fetchVideosById(array: any) {
+    return this.http.get(`videos?id=${array}&part=snippet,statistics`);
+  }
+
+  private displayErrorInDOM(error: any) {
+    const errorMessage = error.error.error.message;
+    const regex = /(<([^>]+)>)/gi;
+    this.errorSpan = errorMessage.replace(regex, '');
+  }
+
+  getVideos(searchString: string) {
+    return this.fetchSearchResults(searchString)
+      .pipe(
+        switchMap((response: any) => {
+          const searchResults = response.items.map((el: any) => el.id.videoId);
+          return this.fetchVideosById(searchResults);
+        }),
+        map((el: any) => el.items),
+        catchError((error) => {
+          this.displayErrorInDOM(error);
+          return of([]);
+        })
+      )
+      .subscribe((data) => {
+        return this.updateInfo(data);
+      });
+  }
 }

@@ -2,13 +2,13 @@
   <div id="headerMainContainer">
     <div id="headerSearchBar">
       <img src="../../../../assets/svg/logo.svg" alt="logo" (click)="goHome()">
-      <input type="text" placeholder="What do you want to find?" id="searchbar">
-      <button id="headerSearchButton" (click)="toggleList()">Search</button>
+      <input type="text" placeholder="What do you want to find?" id="searchbar" [(ngModel)]="searchBarString" (ngModelChange)="search()">
       <button id="searchingOptionsButton" (click)="toggle()"></button>
     </div>
     <div id="headerLogin">
-      <span>Your name</span>
+      <span>{{loginService.userName}}</span>
       <button id="headerLoginButton"></button>
+      <button id="headerLogoutButton" *ngIf="loginService.isAuthorized" (click)="logout()">Logout</button>
     </div>
   </div>
   <app-sorting></app-sorting>

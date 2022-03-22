@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div id="pageContent">
-  <span *ngIf="!isSeen">MAIN PAGE (Press search to fake the search query)</span>
-  <div id="listOfVideos" *ngIf="isSeen">
+  <div id="listOfVideos" *ngIf="infoList">
     <app-video-card *ngFor="let video of infoList | sortBy: sorting:searchString:inDescOrder | sortOrder: inDescOrder" [video]="video"></app-video-card>
+    <span *ngIf="service.errorSpan">{{service.errorSpan}}</span>
   </div>
 </div>

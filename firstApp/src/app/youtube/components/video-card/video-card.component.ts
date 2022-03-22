@@ -35,6 +35,6 @@ export class VideoCardComponent implements OnInit {
   }
 
   pushForRouting() {
-    this.service.videoInfo = this.video;
+    this.service.detailedVideoInfo = this.video;
   }
 }

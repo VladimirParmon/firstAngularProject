@@ -12,6 +12,6 @@ export class DetailedInfoComponent implements OnInit {
   constructor(private service: DataService) {}
 
   ngOnInit(): void {
-    this.videoInfo = this.service.videoInfo;
+    this.videoInfo = this.service.detailedVideoInfo;
   }
 }

@@ -34,7 +34,7 @@ export class LoginPageComponent implements OnInit {
   @ViewChild('regMail') regMail!: ElementRef;
   @ViewChild('regPassword') regPassword!: ElementRef;
 
-  constructor(private service: LoginService, private router: Router) {}
+  constructor(private service: LoginService) {}
 
   ngOnInit(): void {}
 
@@ -45,9 +45,8 @@ export class LoginPageComponent implements OnInit {
   onSubmitLogin() {
     const loginName = this.loginName.nativeElement.value;
     const loginPassword = this.loginPassword.nativeElement.value;
+    //if прошел проверку
     this.service.fakeLogin(loginName, loginPassword);
-    this.service.isAuthorized = true;
-    this.router.navigate(['']);
   }
 
   onSubmitReg() {

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { VideoInfo } from 'src/assets/interfaces';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -10,24 +8,17 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
-  isSeen: boolean;
-  infoList!: any;
+  isSeen = false;
+  infoList: any;
   sorting = 'default';
   searchString = '';
   inDescOrder = false;
   inDescOrderDate = false;
   inDescOrderViews = false;
-  private _jsonURL = '../../assets/response.json';
+  huo: any;
 
-  constructor(private http: HttpClient, private service: DataService) {
-    this.getJSON().subscribe((data) => {
-      this.infoList = data.items;
-    });
-    this.isSeen = this.service.areVideosSeen;
-  }
-  public getJSON(): Observable<any> {
-    return this.http.get(this._jsonURL);
-  }
+  constructor(public service: DataService) {}
+
   ngOnInit() {
     this.service.sortingStatusChange.subscribe((info: any) => {
       if (info === this.sorting) this.flipOrder(info);
@@ -36,10 +27,11 @@ export class MainPageComponent implements OnInit {
     this.service.sortingStringChange.subscribe((info: any) => {
       this.searchString = info;
     });
-    this.service.areVideosSeenChange.subscribe((info: any) => {
-      this.isSeen = info;
+    this.service.videosInfo.subscribe((info: any) => {
+      this.infoList = info;
     });
   }
+
   flipOrder(info: string) {
     if (info === 'date') {
       this.inDescOrderDate = !this.inDescOrderDate;

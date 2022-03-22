@@ -20,12 +20,14 @@
   background-position: -2px -2px;
 }
 
-#headerSearchButton {
+#headerLogoutButton {
   width: 80px;
   height: 24px;
   background-color: #2f80ed;
   border: none;
-  border-radius: 0 4px 4px 0;
+  border-radius: 4px;
+  margin-left: 5px;
+  color: white;
 }
 
 #headerSearchBar,
