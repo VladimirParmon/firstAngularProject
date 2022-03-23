@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, animate, transition, query } from '@angular/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DataService } from 'src/app/youtube/services/data.service';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/auth/services/login.service';

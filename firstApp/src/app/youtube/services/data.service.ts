@@ -1,18 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  Observable,
-  switchMap,
-  map,
-  mergeMap,
-  tap,
-  debounceTime,
-  distinctUntilChanged,
-  catchError,
-  of,
-  throwError,
-} from 'rxjs';
+import { BehaviorSubject, Observable, switchMap, map, debounceTime, distinctUntilChanged, catchError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
