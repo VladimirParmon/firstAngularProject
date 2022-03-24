@@ -11,6 +11,7 @@ import { DetailedInfoComponent } from './pages/detailed-info/detailed-info.compo
 
 import { mainPageRoutingModule } from './pages/main-page/main-page-routing.module';
 import { detailedInfoPageRoutingModule } from './pages/detailed-info/detailed-info-routing.module';
+import { AdminComponent } from './pages/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { detailedInfoPageRoutingModule } from './pages/detailed-info/detailed-in
     SortByPipe,
     SortOrderPipe,
     DetailedInfoComponent,
+    AdminComponent,
   ],
   imports: [CommonModule, CoreModule, mainPageRoutingModule, detailedInfoPageRoutingModule],
 })
