@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, query } from '@angular/animations';
 import { DataService } from 'src/app/youtube/services/data.service';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/auth/services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -33,11 +34,19 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {}
 
-  constructor(private service: DataService, private router: Router) {}
+  constructor(private service: DataService, private router: Router, public loginService: LoginService) {}
 
   toggleList() {
     const status = !this.service.areVideosSeen;
     this.service.updateList(status);
+  }
+
+  logout() {
+    this.loginService.fakeLogout();
+  }
+
+  admin() {
+    this.router.navigate(['admin']);
   }
 
   goHome() {

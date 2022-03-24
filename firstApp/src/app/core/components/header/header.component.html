@@ -9,6 +9,8 @@
     <div id="headerLogin">
       <span>Your name</span>
       <button id="headerLoginButton"></button>
+      <button id="headerLogoutButton" *ngIf="loginService.isAuthorized" (click)="logout()">Logout</button>
+      <button id="headerLogoutButton" *ngIf="loginService.isAuthorized" (click)="admin()">ADMIN</button>
     </div>
   </div>
   <app-sorting></app-sorting>

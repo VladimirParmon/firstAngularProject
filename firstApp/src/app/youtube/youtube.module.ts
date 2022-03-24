@@ -9,8 +9,7 @@ import { CoreModule } from '../core/core.module';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { DetailedInfoComponent } from './pages/detailed-info/detailed-info.component';
 
-import { mainPageRoutingModule } from './pages/main-page/main-page-routing.module';
-import { detailedInfoPageRoutingModule } from './pages/detailed-info/detailed-info-routing.module';
+import { youtubeRoutingModule } from './youtube-routing.module';
 import { AdminComponent } from './pages/admin/admin.component';
 
 @NgModule({
@@ -23,6 +22,6 @@ import { AdminComponent } from './pages/admin/admin.component';
     DetailedInfoComponent,
     AdminComponent,
   ],
-  imports: [CommonModule, CoreModule, mainPageRoutingModule, detailedInfoPageRoutingModule],
+  imports: [CommonModule, CoreModule, youtubeRoutingModule],
 })
 export class YoutubeModule {}
