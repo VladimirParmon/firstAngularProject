@@ -1,1 +1,38 @@
-<p>admin works!</p>
+<app-header></app-header>
+<div class="wrapper">
+  <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+    <h2>Create new card</h2>
+
+    <label for="title">Title: </label>
+    <input id="title" type="text" formControlName="title">
+    <div *ngIf="createForm.invalid && (forms['title'].dirty || forms['title'].touched)">
+      <p *ngIf="forms['title'].errors?.['required']">Please enter a title</p>
+      <p *ngIf="forms['title'].errors?.['minlength']">The title is too short</p>
+      <p *ngIf="forms['title'].errors?.['maxlength']">The title is too long</p>
+    </div>
+
+    <label for="description">Description: </label>
+    <input id="description" type="text" formControlName="description">
+    <div *ngIf="createForm.invalid && (forms['description'].dirty || forms['description'].touched)">
+      <p *ngIf="forms['description'].errors?.['maxlength']">The description is too long</p>
+    </div>
+
+    <label for="img">Img: </label>
+    <input id="img" type="text" formControlName="img">
+    <div *ngIf="createForm.invalid && (forms['img'].dirty || forms['img'].touched)">
+      <p *ngIf="forms['img'].errors?.['required']">Please enter a link to the image</p>
+      <p *ngIf="forms['img'].errors?.['pattern']">The image link is invalid</p>
+    </div>
+
+    <label for="link-video">Link video: </label>
+    <input id="link-vieo" type="text" formControlName="linkVideo">
+    <div *ngIf="createForm.invalid && (forms['linkVideo'].dirty || forms['linkVideo'].touched)">
+      <p *ngIf="forms['linkVideo'].errors?.['required']">Please enter a link to the video</p>
+      <p *ngIf="forms['linkVideo'].errors?.['pattern']">The video link is invalid</p>
+    </div>
+
+    <p id="msg">Complete the form to enable the button.</p>
+  <button type="submit" [disabled]="!createForm.valid">Submit</button>
+
+  </form>
+</div>

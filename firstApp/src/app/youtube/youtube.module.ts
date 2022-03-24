@@ -8,6 +8,7 @@ import { SortOrderPipe } from '../shared/pipes/sort-order.pipe';
 import { CoreModule } from '../core/core.module';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { DetailedInfoComponent } from './pages/detailed-info/detailed-info.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { youtubeRoutingModule } from './youtube-routing.module';
 import { AdminComponent } from './pages/admin/admin.component';
@@ -22,6 +23,6 @@ import { AdminComponent } from './pages/admin/admin.component';
     DetailedInfoComponent,
     AdminComponent,
   ],
-  imports: [CommonModule, CoreModule, youtubeRoutingModule],
+  imports: [CommonModule, CoreModule, youtubeRoutingModule, ReactiveFormsModule],
 })
 export class YoutubeModule {}

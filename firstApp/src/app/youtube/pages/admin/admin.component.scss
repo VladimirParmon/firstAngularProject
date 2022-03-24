@@ -1,0 +1,61 @@
+form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f2f2;
+  width: 100%;
+  max-width: 450px;
+  padding: 30px 20px 30px 20px;
+  border-radius: 20px;
+}
+
+input {
+  height: 40px;
+  background-color: #e0e0e0;
+  border: none;
+  margin-top: 5px;
+  padding: 0 10px;
+}
+
+button {
+  background-color: #2f80ed;
+  width: 120px;
+  height: 30px;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  align-self: flex-end;
+  margin-top: 30px;
+}
+
+label {
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+#msg {
+  position: absolute;
+  bottom: 35px;
+  left: 20px;
+  font-size: 13px;
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button:disabled {
+  background-color: grey;
+}
