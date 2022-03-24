@@ -1,11 +1,25 @@
 <app-header></app-header>
 <div id="pageContent" [@windowTransition]>
   <div id="window">
-      <form (ngSubmit)="onSubmitLogin()">
+      <form (ngSubmit)="onSubmitLogin()" [formGroup]="loginForm">
         <div id="loginForm" *ngIf="isLoginWindow" [@windowTransition]>
           <span>Login</span>
-          <input type="text" id="login-name" #loginName autocomplete="off" placeholder="Введите имя" required>
-          <input type="text" id="login-password" #loginPassword autocomplete="off" placeholder="Введите пароль" required>
+          <input type="text" id="login-name" #loginName formControlName="loginEmail" autocomplete="off" placeholder="Введите имя" required>
+          <div class="msg" *ngIf="loginForm.invalid && (forms['loginEmail'].dirty || forms['loginEmail'].touched)">
+            <p *ngIf="forms['loginEmail'].errors?.['required']">Please enter a login email</p>
+            <p *ngIf="forms['loginEmail'].errors?.['email']">The login email is invalid</p>
+          </div>
+          <input type="text" id="login-password" #loginPassword formControlName="loginPassword" autocomplete="off" placeholder="Введите пароль" required>
+          <div class="msg" *ngIf="loginForm.invalid && (forms['loginPassword'].dirty || forms['loginPassword'].touched)">
+            <p *ngIf="forms['loginPassword'].errors?.['required']">Please enter a password</p>
+            <p *ngIf="forms['loginPassword'].errors?.['passwordValidation'] && !forms['loginPassword'].errors?.['required']">Your password isn't strong enough</p>
+            <ul *ngIf="!forms['loginPassword'].errors?.['required']">
+              <li *ngIf="forms['loginPassword'].errors?.['stringLengthFail']">at least 8 characters</li>
+              <li *ngIf="forms['loginPassword'].errors?.['caseFail']">a mixture of both uppercase and lowercase letters</li>
+              <li *ngIf="forms['loginPassword'].errors?.['charFail']">a mixture of letters and numbers</li>
+              <li *ngIf="forms['loginPassword'].errors?.['symbolFail']">inclusion of at least one special character, e.g., ! @ # ? ]</li>
+            </ul>
+          </div>
           <div class="button-wrapper">
             <button type="button" (click)="menuFlipper()">Registration</button>
             <button>Login</button>
