@@ -91,3 +91,7 @@ ul {
   font-size: 13px;
   margin-top: 5px;
 }
+
+.ng-invalid:not(.ng-pristine) {
+  border-left: 5px solid red;
+}
