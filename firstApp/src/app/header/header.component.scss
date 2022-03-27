@@ -1,0 +1,72 @@
+#searchingOptionsButton {
+  background-image: url(../../assets/svg/settings.svg);
+  background-position: center center;
+  background-size: 100%;
+}
+
+#searchingOptionsButton,
+#headerLoginButton {
+  border: none;
+  background-color: rgba($color: #000000, $alpha: 0);
+  background-repeat: no-repeat;
+  min-width: 24px;
+  min-height: 24px;
+  margin-left: 10px;
+}
+
+#headerLoginButton {
+  background-image: url(../../assets/svg/login.svg);
+  background-size: 130%;
+  background-position: -2px -2px;
+}
+
+#headerSearchButton {
+  width: 80px;
+  height: 24px;
+  background-color: #2f80ed;
+  border: none;
+  border-radius: 0 4px 4px 0;
+}
+
+#headerSearchBar,
+#headerLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#headerSearchBar {
+  flex-grow: 2;
+  img {
+    margin-right: 10px;
+  }
+  input {
+    height: 24px;
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+#headerLogin {
+  flex-grow: 1;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+}
+
+#searchbar {
+  padding: 0 5px 0 5px;
+  border-radius: 0;
+  border: none;
+}
+
+#headerMainContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #e5e5e5;
+  min-height: 80px;
+  z-index: 1;
+}
