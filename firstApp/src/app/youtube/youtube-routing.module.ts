@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RoutingGuardGuard } from 'src/app/auth/guard/routing-guard.guard';
+import { RoutingGuardGuard } from 'src/app/core/guard/routing-guard.guard';
 
 import { DetailedInfoComponent } from './pages/detailed-info/detailed-info.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
