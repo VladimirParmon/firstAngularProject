@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RoutingGuardGuard } from 'src/app/auth/guard/routing-guard.guard';
 
-import { DetailedInfoComponent } from './detailed-info.component';
+import { DetailedInfoComponent } from './pages/detailed-info/detailed-info.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 
 const routes: Routes = [
   {
@@ -10,10 +11,15 @@ const routes: Routes = [
     canActivate: [RoutingGuardGuard],
     component: DetailedInfoComponent,
   },
+  {
+    path: '',
+    canActivate: [RoutingGuardGuard],
+    component: MainPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class detailedInfoPageRoutingModule {}
+export class youtubeRoutingModule {}
