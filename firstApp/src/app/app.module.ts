@@ -10,6 +10,8 @@ import { YoutubeModule } from './youtube/youtube.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { YoutubeInterceptor } from './youtube/interceptors/youtube.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +24,9 @@ import { YoutubeInterceptor } from './youtube/interceptors/youtube.interceptor';
     BrowserAnimationsModule,
     SharedModule,
     AuthModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: YoutubeInterceptor, multi: true }],
   bootstrap: [AppComponent],
