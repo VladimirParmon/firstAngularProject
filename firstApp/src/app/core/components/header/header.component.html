@@ -9,6 +9,7 @@
       <span>{{loginService.userName}}</span>
       <button id="headerLoginButton"></button>
       <button id="headerLogoutButton" *ngIf="loginService.isAuthorized" (click)="logout()">Logout</button>
+      <button id="headerAdminButton" (click)="goAdmin()" *ngIf="loginService.isAuthorized">Admin page</button>
     </div>
   </div>
   <app-sorting></app-sorting>

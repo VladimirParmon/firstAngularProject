@@ -4,6 +4,7 @@ import { RoutingGuardGuard } from 'src/app/auth/guard/routing-guard.guard';
 
 import { DetailedInfoComponent } from './pages/detailed-info/detailed-info.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,11 @@ const routes: Routes = [
     path: '',
     canActivate: [RoutingGuardGuard],
     component: MainPageComponent,
+  },
+  {
+    path: 'admin',
+    canActivate: [RoutingGuardGuard],
+    component: AdminComponent,
   },
 ];
 

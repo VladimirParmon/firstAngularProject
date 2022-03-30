@@ -43,6 +43,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  goAdmin() {
+    this.router.navigate(['admin']);
+  }
+
   logout() {
     this.loginService.fakeLogout();
   }
