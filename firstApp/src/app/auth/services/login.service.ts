@@ -24,6 +24,7 @@ export class LoginService {
 
   fakeLogout() {
     this.isAuthorized = false;
+    this.userName = 'Your name';
     localStorage.removeItem('token');
     localStorage.removeItem('userName');
     this.router.navigate(['login']);

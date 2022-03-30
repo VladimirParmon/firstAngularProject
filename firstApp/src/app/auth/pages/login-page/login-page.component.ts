@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { trigger, stagger, style, animate, transition, query, sequence } from '@angular/animations';
+import { trigger, style, animate, transition, sequence } from '@angular/animations';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',
@@ -34,9 +35,70 @@ export class LoginPageComponent implements OnInit {
   @ViewChild('regMail') regMail!: ElementRef;
   @ViewChild('regPassword') regPassword!: ElementRef;
 
-  constructor(private service: LoginService) {}
+  constructor(private service: LoginService, private router: Router, private fb: FormBuilder) {}
 
   ngOnInit(): void {}
+
+  loginForm = this.fb.group({
+    loginEmail: ['', Validators.compose([Validators.email, Validators.required])],
+    loginPassword: ['', [Validators.required, this.passwordValidator()]],
+  });
+
+  passwordValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const string = control.value;
+
+      let stringLength = false;
+      let upperCase = false;
+      let lowerCase = false;
+      let letter = false;
+      let number = false;
+      let symbol = false;
+
+      let isValid = false;
+
+      const validate = () => {
+        const arr = string.split('');
+        const symbols = ['!', '@', '#', '?', ']', '[', ')', '(', '%', '{', '}'];
+        let result = false;
+
+        if (string.length >= 8) stringLength = true;
+
+        arr.forEach((element: string) => {
+          if (isNaN(Number(element))) {
+            letter = true;
+            if (symbols.includes(element)) {
+              symbol = true;
+            } else {
+              if (element.toUpperCase() === element) upperCase = true;
+              if (element.toLowerCase() === element) lowerCase = true;
+            }
+          } else {
+            number = true;
+          }
+        });
+
+        if (upperCase && lowerCase && letter && number && symbol && stringLength) result = true;
+        return result;
+      };
+
+      isValid = validate();
+
+      if (isValid) {
+        return null;
+      } else {
+        const caseFail = upperCase && lowerCase;
+        const charFail = letter && number;
+        return {
+          passwordValidation: true,
+          caseFail: !caseFail,
+          charFail: !charFail,
+          stringLengthFail: !stringLength,
+          symbolFail: !symbol,
+        };
+      }
+    };
+  }
 
   menuFlipper() {
     this.isLoginWindow = !this.isLoginWindow;
@@ -45,8 +107,9 @@ export class LoginPageComponent implements OnInit {
   onSubmitLogin() {
     const loginName = this.loginName.nativeElement.value;
     const loginPassword = this.loginPassword.nativeElement.value;
-    //if прошел проверку
     this.service.fakeLogin(loginName, loginPassword);
+    this.service.isAuthorized = true;
+    this.router.navigate(['']);
   }
 
   onSubmitReg() {
@@ -54,5 +117,9 @@ export class LoginPageComponent implements OnInit {
     console.log(this.regLastName.nativeElement.value);
     console.log(this.regMail.nativeElement.value);
     console.log(this.regPassword.nativeElement.value);
+  }
+
+  get forms() {
+    return this.loginForm.controls;
   }
 }
