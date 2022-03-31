@@ -12,8 +12,6 @@ import { AuthModule } from './auth/auth.module';
 import { YoutubeInterceptor } from './youtube/interceptors/youtube.interceptor';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './redux/reducers';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +27,6 @@ import { environment } from '../environments/environment';
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: YoutubeInterceptor, multi: true }],
   bootstrap: [AppComponent],

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { storeCustomCards } from 'src/app/redux/actions/youtube.actions';
 
 @Component({
   selector: 'app-admin',
@@ -18,18 +16,13 @@ export class AdminComponent implements OnInit {
     linkVideo: ['', Validators.compose([Validators.pattern(this.reg), Validators.required])],
   });
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
     console.log('submitted!');
   }
-
-  blyad() {
-    this.store.dispatch(storeCustomCards({ hui: 'zalupa' }));
-  }
-
   get forms() {
     return this.createForm.controls;
   }
