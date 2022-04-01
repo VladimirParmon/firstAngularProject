@@ -6,8 +6,5 @@ const initialState = {};
 
 export const APIVideosReducer = createReducer(
   initialState,
-  on(storeAPIVideos, (state, action) => ({
-    ...state,
-    APIVideosState: action,
-  }))
+  on(storeAPIVideos, (state, action) => action)
 );

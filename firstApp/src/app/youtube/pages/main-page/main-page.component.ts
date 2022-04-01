@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { selectCustomCardsInfo } from 'src/app/redux/selectors/youtube.selectors';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -17,7 +19,11 @@ export class MainPageComponent implements OnInit {
   inDescOrderViews = false;
   huo: any;
 
-  constructor(public service: DataService) {}
+  test$: Observable<any>;
+
+  constructor(public service: DataService, private store: Store) {
+    this.test$ = this.store.select(selectCustomCardsInfo);
+  }
 
   ngOnInit() {
     this.service.sortingStatusChange.subscribe((info: any) => {
