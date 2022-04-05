@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectCustomCardsInfo } from 'src/app/redux/selectors/youtube.selectors';
+import { selectYoutubeAPIData } from '../../../redux/selectors/youtube.selectors';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -11,18 +12,17 @@ import { DataService } from '../../services/data.service';
 })
 export class MainPageComponent implements OnInit {
   isSeen = false;
-  infoList: any;
   sorting = 'default';
   searchString = '';
   inDescOrder = false;
   inDescOrderDate = false;
   inDescOrderViews = false;
+
+  infoList$: Observable<any>;
   huo: any;
 
-  test$: Observable<any>;
-
   constructor(public service: DataService, private store: Store) {
-    this.test$ = this.store.select(selectCustomCardsInfo);
+    this.infoList$ = this.store.select(selectYoutubeAPIData);
   }
 
   ngOnInit() {
@@ -33,8 +33,11 @@ export class MainPageComponent implements OnInit {
     this.service.sortingStringChange.subscribe((info: any) => {
       this.searchString = info;
     });
-    this.service.videosInfo.subscribe((info: any) => {
-      this.infoList = info;
+    // this.service.videosInfo.subscribe((info: any) => {
+    //   this.infoList = info;
+    // });
+    this.infoList$.subscribe((info: any) => {
+      this.huo = info;
     });
   }
 

@@ -3,6 +3,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { DataService } from 'src/app/youtube/services/data.service';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/auth/services/login.service';
+import { Store } from '@ngrx/store';
+import { loadAPIVideos } from '../../../redux/actions/youtube.actions';
 
 @Component({
   selector: 'app-header',
@@ -35,7 +37,12 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {}
 
-  constructor(private service: DataService, private router: Router, public loginService: LoginService) {
+  constructor(
+    private service: DataService,
+    private router: Router,
+    public loginService: LoginService,
+    private store: Store
+  ) {
     this.searchBarString = '';
   }
 
@@ -51,9 +58,14 @@ export class HeaderComponent implements OnInit {
     this.loginService.fakeLogout();
   }
 
+  // search() {
+  //   if (this.searchBarString && this.searchBarString.length >= 3) {
+  //     this.service.getVideos(this.searchBarString);
+  //   }
+  // }
   search() {
     if (this.searchBarString && this.searchBarString.length >= 3) {
-      this.service.getVideos(this.searchBarString);
+      this.store.dispatch(loadAPIVideos(this.searchBarString));
     }
   }
 }

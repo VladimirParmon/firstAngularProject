@@ -1,8 +1,7 @@
 <app-header></app-header>
 <div id="pageContent">
-  <div id="listOfVideos" *ngIf="infoList">
-    <app-video-card *ngFor="let video of infoList | sortBy: sorting:searchString:inDescOrder | sortOrder: inDescOrder" [video]="video"></app-video-card>
-    <span *ngIf="service.errorSpan">{{service.errorSpan}}</span>
+  <div id="listOfVideos">
+    <app-video-card *ngFor="let video of infoList$ | async | sortBy: sorting:searchString:inDescOrder | sortOrder: inDescOrder" [video]="video"></app-video-card>
+    <!-- <span *ngIf="service.errorSpan">{{service.errorSpan}}</span> -->
   </div>
-  <span *ngFor="let card of test$ | async">{{card.info}}</span>
 </div>

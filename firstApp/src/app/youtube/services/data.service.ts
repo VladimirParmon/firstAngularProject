@@ -50,20 +50,16 @@ export class DataService {
   }
 
   getVideos(searchString: string) {
-    return this.fetchSearchResults(searchString)
-      .pipe(
-        switchMap((response: any) => {
-          const searchResults = response.items.map((el: any) => el.id.videoId);
-          return this.fetchVideosById(searchResults);
-        }),
-        map((el: any) => el.items),
-        catchError((error) => {
-          this.displayErrorInDOM(error);
-          return of([]);
-        })
-      )
-      .subscribe((data) => {
-        return this.updateInfo(data);
-      });
+    return this.fetchSearchResults(searchString).pipe(
+      switchMap((response: any) => {
+        const searchResults = response.items.map((el: any) => el.id.videoId);
+        return this.fetchVideosById(searchResults);
+      }),
+      map((el: any) => el.items),
+      catchError((error) => {
+        this.displayErrorInDOM(error);
+        return of([]);
+      })
+    );
   }
 }

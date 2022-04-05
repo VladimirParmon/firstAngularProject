@@ -12,6 +12,9 @@ import { DetailedInfoComponent } from './pages/detailed-info/detailed-info.compo
 
 import { youtubeRoutingModule } from './youtube-routing.module';
 import { AdminComponent } from './pages/admin/admin.component';
+import { EffectsModule } from '@ngrx/effects';
+import { YoutubeEffects } from '../redux/effects/youtube.effects';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { AdminComponent } from './pages/admin/admin.component';
     SortOrderPipe,
     DetailedInfoComponent,
     AdminComponent,
+    HighlightDirective,
   ],
-  imports: [CommonModule, CoreModule, youtubeRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, CoreModule, youtubeRoutingModule, ReactiveFormsModule, EffectsModule.forFeature([YoutubeEffects])],
 })
 export class YoutubeModule {}
