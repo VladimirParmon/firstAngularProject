@@ -5,6 +5,7 @@ export const storeCustomCards = createAction('[Youtube] StoreCards', props<any>(
 
 export const loadAPIVideos = createAction('[Youtube] load videos from YT API', props<any>());
 export const loadAPIVideosSuccess = createAction('[Youtube] SUCCESS: load videos from YT API', props<any>());
+export const loadAPIVideosFailure = createAction('[Youtube] FAILURE: load videos from YT API', props<any>());
 
 export interface APIVideosState {}
 

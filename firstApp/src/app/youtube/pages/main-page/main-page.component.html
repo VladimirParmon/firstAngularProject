@@ -2,6 +2,6 @@
 <div id="pageContent">
   <div id="listOfVideos">
     <app-video-card *ngFor="let video of infoList$ | async | sortBy: sorting:searchString:inDescOrder | sortOrder: inDescOrder" [video]="video"></app-video-card>
-    <!-- <span *ngIf="service.errorSpan">{{service.errorSpan}}</span> -->
+    <span *ngIf="service.errorSpan">{{service.errorSpan}}</span>
   </div>
 </div>
