@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
   // }
   search() {
     if (this.searchBarString && this.searchBarString.length >= 3) {
-      this.store.dispatch(loadAPIVideos(this.searchBarString));
+      this.store.dispatch(loadAPIVideos({ string: this.searchBarString }));
     }
   }
 }

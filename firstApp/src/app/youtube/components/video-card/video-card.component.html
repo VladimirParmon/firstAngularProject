@@ -1,8 +1,4 @@
-<div class="card"
-  [class.red]="checkDate() === 'red'"
-  [class.green]="checkDate() === 'green'"
-  [class.blue]="checkDate() === 'blue'"
-  >
+<div class="card" appHighlight [publishedAt]="video.snippet.publishedAt">
   <img src={{video.snippet.thumbnails.high.url}} alt={{video.snippet.title}}>
   <app-likes-and-views-counter [stats]="video.statistics"></app-likes-and-views-counter>
   <p>{{ video.snippet.title }}</p>
