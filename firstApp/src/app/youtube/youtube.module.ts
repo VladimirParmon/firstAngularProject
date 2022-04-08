@@ -15,6 +15,7 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { EffectsModule } from '@ngrx/effects';
 import { YoutubeEffects } from '../redux/effects/youtube.effects';
 import { HighlightDirective } from './directives/highlight.directive';
+import { CustomCardComponent } from './components/custom-card/custom-card.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     DetailedInfoComponent,
     AdminComponent,
     HighlightDirective,
+    CustomCardComponent,
   ],
   imports: [CommonModule, CoreModule, youtubeRoutingModule, ReactiveFormsModule, EffectsModule.forFeature([YoutubeEffects])],
 })

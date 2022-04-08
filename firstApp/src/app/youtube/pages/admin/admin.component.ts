@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { storeAPIVideos, storeCustomCards } from 'src/app/redux/actions/youtube.actions';
+import { addCustomCard } from '../../../redux/actions/youtube.actions';
 
 @Component({
   selector: 'app-admin',
@@ -18,20 +18,37 @@ export class AdminComponent implements OnInit {
     linkVideo: ['', Validators.compose([Validators.pattern(this.reg), Validators.required])],
   });
 
+  titleString: string = '';
+  descriptionString: string = '';
+  imgLinkString: string = '';
+  videoLinkString: string = '';
+
+  isNotificationSeen = false;
+
   constructor(private fb: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log('submitted!');
-  }
+    this.isNotificationSeen = true;
+    setTimeout(() => {
+      this.isNotificationSeen = false;
+    }, 1000);
 
-  storageTesting() {
-    this.store.dispatch(storeCustomCards({ info: 'some string' }));
-  }
+    this.store.dispatch(
+      addCustomCard({
+        info: {
+          title: this.titleString,
+          description: this.descriptionString,
+          img: this.imgLinkString,
+          video: this.videoLinkString,
+        },
+      })
+    );
 
-  storageTestingAPI() {
-    this.store.dispatch(storeAPIVideos({ infoAPI: 'some yt string' }));
+    this.createForm.reset();
+    this.createForm.markAsPristine();
+    this.createForm.markAsUntouched();
   }
 
   get forms() {

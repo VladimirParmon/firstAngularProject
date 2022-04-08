@@ -63,3 +63,10 @@ button:disabled {
 .ng-invalid:not(.ng-pristine, form) {
   border-left: 5px solid red;
 }
+
+#note {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  color: red;
+}

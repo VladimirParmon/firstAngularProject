@@ -2,18 +2,46 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 1200px;
-  justify-content: flex-start;
+  height: 100%;
+  max-width: 70%;
+  justify-content: center;
   align-items: center;
 }
 
 #pageContent {
   display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
+  width: 100vw;
+  //justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
 }
 
 span {
   font-size: 5vh;
+}
+
+#listOfCards {
+  display: flex;
+  flex-wrap: wrap;
+  width: 25%;
+  height: 100%;
+  max-width: 400px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#videoGroup,
+#cardsGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#videoGroup {
+  min-width: 70%;
+}
+
+h2 {
+  margin-top: 10px;
 }

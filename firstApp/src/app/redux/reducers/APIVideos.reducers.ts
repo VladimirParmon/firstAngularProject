@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { loadAPIVideos, loadAPIVideosFailure, loadAPIVideosSuccess, storeAPIVideos } from '../actions/youtube.actions';
+import { loadAPIVideosFailure, loadAPIVideosSuccess } from '../actions/youtube.actions';
 
 const initialState = {};
 

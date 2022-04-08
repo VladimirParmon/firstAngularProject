@@ -3,8 +3,10 @@
   <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
     <h2>Create new card</h2>
 
+    <p *ngIf="isNotificationSeen" id="note">Card added to the main page</p>
+
     <label for="title">Title: </label>
-    <input id="title" type="text" formControlName="title">
+    <input id="title" type="text" formControlName="title" [(ngModel)]="titleString">
     <div *ngIf="createForm.invalid && (forms['title'].dirty || forms['title'].touched)">
       <p *ngIf="forms['title'].errors?.['required']">Please enter a title</p>
       <p *ngIf="forms['title'].errors?.['minlength']">The title is too short</p>
@@ -12,20 +14,20 @@
     </div>
 
     <label for="description">Description: </label>
-    <input id="description" type="text" formControlName="description">
+    <input id="description" type="text" formControlName="description" [(ngModel)]="descriptionString">
     <div *ngIf="createForm.invalid && (forms['description'].dirty || forms['description'].touched)">
       <p *ngIf="forms['description'].errors?.['maxlength']">The description is too long</p>
     </div>
 
     <label for="img">Img: </label>
-    <input id="img" type="text" formControlName="img">
+    <input id="img" type="text" formControlName="img" [(ngModel)]="imgLinkString">
     <div *ngIf="createForm.invalid && (forms['img'].dirty || forms['img'].touched)">
       <p *ngIf="forms['img'].errors?.['required']">Please enter a link to the image</p>
       <p *ngIf="forms['img'].errors?.['pattern']">The image link is invalid</p>
     </div>
 
     <label for="link-video">Link video: </label>
-    <input id="link-vieo" type="text" formControlName="linkVideo">
+    <input id="link-vieo" type="text" formControlName="linkVideo" [(ngModel)]="videoLinkString">
     <div *ngIf="createForm.invalid && (forms['linkVideo'].dirty || forms['linkVideo'].touched)">
       <p *ngIf="forms['linkVideo'].errors?.['required']">Please enter a link to the video</p>
       <p *ngIf="forms['linkVideo'].errors?.['pattern']">The video link is invalid</p>
@@ -33,8 +35,5 @@
 
     <p id="msg">Complete the form to enable the button.</p>
   <button type="submit" [disabled]="!createForm.valid">Submit</button>
-
   </form>
-  <button (click)="storageTesting()">CLICK ME</button>
-  <button (click)="storageTestingAPI()">CLICK ME API</button>
 </div>

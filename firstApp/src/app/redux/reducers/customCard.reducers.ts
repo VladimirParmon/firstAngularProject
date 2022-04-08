@@ -1,6 +1,7 @@
+import { act } from '@ngrx/effects';
 import { createReducer, on } from '@ngrx/store';
 
-import { storeCustomCards } from '../actions/youtube.actions';
+import { addCustomCard, deleteCustomCard } from '../actions/youtube.actions';
 
 const initialState = {
   data: [],
@@ -8,13 +9,8 @@ const initialState = {
 
 export const customCardsReducer = createReducer(
   initialState,
-  on(storeCustomCards, (state: any, action) => ({
+  on(addCustomCard, (state: any, action) => ({
     ...state,
-    data: [
-      ...state.data,
-      {
-        info: action.info,
-      },
-    ],
+    data: [...state.data, action.info],
   }))
 );
