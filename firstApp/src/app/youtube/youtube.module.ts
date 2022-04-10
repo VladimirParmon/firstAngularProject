@@ -12,7 +12,15 @@ import { SortOrderPipe } from './pipes/sort-order.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
-  declarations: [MainPageComponent, DetailedInfoPageComponent, VideoCardComponent, ViewsAndLikesCounterComponent, SortByPipe, SortOrderPipe, HighlightDirective],
+  declarations: [
+    MainPageComponent,
+    DetailedInfoPageComponent,
+    VideoCardComponent,
+    ViewsAndLikesCounterComponent,
+    SortByPipe,
+    SortOrderPipe,
+    HighlightDirective,
+  ],
   imports: [CommonModule, YoutubeRoutingModule, CoreModule],
 })
 export class YoutubeModule {}
