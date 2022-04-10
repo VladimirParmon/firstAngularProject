@@ -1,0 +1,64 @@
+@use '../../../../styles.scss';
+
+.pageContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loginForm,
+.registrationForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 350px;
+  padding: 30px 20px 30px 20px;
+  border-radius: 18px;
+  background-color: styles.$forms-background;
+  position: absolute;
+}
+
+.form-input {
+  height: 40px;
+  width: 100%;
+  border: none;
+  background-color: styles.$input-background;
+  padding: 0 10px;
+}
+
+.form-span {
+  margin: 0 15px 15px 0;
+  align-self: flex-start;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.loginForm input:not(:last-child),
+.registrationForm input:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.button-wrapper {
+  display: flex;
+
+  button {
+    border: none;
+
+    &:first-child {
+      text-decoration: underline;
+      color: styles.$blue-accent;
+    }
+
+    &:last-child {
+      margin-left: 15px;
+      background-color: styles.$blue-accent;
+      width: 120px;
+      height: 30px;
+      border-radius: 5px;
+      color: white;
+    }
+  }
+}

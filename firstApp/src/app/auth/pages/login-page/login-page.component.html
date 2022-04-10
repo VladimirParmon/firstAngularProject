@@ -1,0 +1,22 @@
+<div class="pageContent">
+  <form (ngSubmit)="onSubmitLogin()" class="loginForm" *ngIf="isLoginWindow" [@windowTransition]>
+    <span class="form-span loginForm__span">Login</span>
+    <input type="text" [(ngModel)]="loginName" name="loginName" autocomplete="off" placeholder="Введите имя" required class="form-input loginForm__input">
+    <input type="text" [(ngModel)]="loginPassword" name="loginPassword" autocomplete="off" placeholder="Введите пароль" required class="form-input loginForm__input">
+    <div class="button-wrapper loginForm__button-wrapper">
+      <button type="button" (click)="menuFlipper()">Registration</button>
+      <button>Login</button>
+    </div>
+  </form>
+  <form (ngSubmit)="onSubmitReg()" class="registrationForm" *ngIf="!isLoginWindow" [@windowTransition]>
+    <span class="form-span registrationForm__span">Registration</span>
+    <input type="text" [(ngModel)]="regFirstName" name="regFirstName" autocomplete="off" placeholder="Введите имя" required class="form-input registrationForm__input">
+    <input type="text" [(ngModel)]="regLastName" name="regLastName" autocomplete="off" placeholder="Введите фамилию" required class="form-input registrationForm__input">
+    <input type="text" [(ngModel)]="regMail" name="regMail" autocomplete="off" placeholder="Введите почту" required class="form-input registrationForm__input">
+    <input type="text" [(ngModel)]="regPassword" name="regPassword" autocomplete="off" placeholder="Введите пароль" required class="form-input registrationForm__input">
+    <div class="button-wrapper registrationForm__button-wrapper">
+      <button type="button" (click)="menuFlipper()">Login</button>
+      <button>Registration</button>
+    </div>
+  </form>
+</div>
