@@ -10,7 +10,7 @@ interface PageInfo {
   resultsPerPage: number;
 }
 
-interface VideoItem {
+export interface VideoItem {
   kind: string;
   etag: string;
   id: string;
@@ -47,7 +47,7 @@ interface Localized {
   description: string;
 }
 
-interface Statistics {
+export interface Statistics {
   viewCount: string;
   likeCount: string;
   dislikeCount: string;
