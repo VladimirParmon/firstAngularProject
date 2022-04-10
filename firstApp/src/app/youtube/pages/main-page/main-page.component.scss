@@ -1,0 +1,19 @@
+.listOfVideos {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.pageContent {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.listOfVideos__error-span {
+  font-size: 5vh;
+}
