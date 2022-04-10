@@ -1,0 +1,16 @@
+<app-header></app-header>
+<div class="pageContent">
+  <div class="detailedInfo">
+    <button class="detailedInfo__return-button" (click)="goBack()">〈</button>
+    <img src="{{videoInfo.snippet.thumbnails['maxres'].url}}" alt={{videoInfo.snippet.title}}>
+    <div class="detailedInfo__inner-description">
+      <div class="detailedInfo__title">
+        <h2>{{ videoInfo.snippet.title }}</h2>
+        <p>{{videoInfo.snippet.publishedAt | date:'EEEE, MMMM MM, y'}}</p>
+      </div>
+      <h3>Description:</h3>
+      <p>{{ videoInfo.snippet.description.slice(0, 350)}}...</p>
+      <app-views-and-likes-counter [stats]="videoInfo.statistics"></app-views-and-likes-counter>
+    </div>
+  </div>
+</div>
