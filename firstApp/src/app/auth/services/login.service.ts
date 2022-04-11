@@ -14,7 +14,7 @@ export class LoginService {
     this.userName = name ? name : 'Your name';
   }
 
-  fakeLogin(loginName: string) {
+  fakeLogin(loginName: string): void {
     this.isAuthorized = true;
     this.userName = loginName;
     localStorage.setItem('userName', loginName);
@@ -22,7 +22,7 @@ export class LoginService {
     this.router.navigate(['']);
   }
 
-  fakeLogout() {
+  fakeLogout(): void {
     this.isAuthorized = false;
     localStorage.removeItem('token');
     localStorage.removeItem('userName');

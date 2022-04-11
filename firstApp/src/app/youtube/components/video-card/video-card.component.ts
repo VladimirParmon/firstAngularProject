@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { VideoItem } from 'src/app/models/youtubeResponse';
 import { DataService } from '../../services/data.service';
 
@@ -12,7 +12,7 @@ export class VideoCardComponent {
 
   constructor(private service: DataService) {}
 
-  pushForRouting() {
+  pushForRouting(): void {
     this.service.detailedVideoInfo = this.video;
   }
 }

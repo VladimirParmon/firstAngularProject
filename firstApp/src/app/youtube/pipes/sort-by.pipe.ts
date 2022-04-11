@@ -1,7 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { of } from 'rxjs';
 import { SortingStatus } from 'src/app/models/sortingLogic';
-import { APIVideoInfo, VideoItem } from 'src/app/models/youtubeResponse';
+import { VideoItem } from 'src/app/models/youtubeResponse';
+
+export enum status {
+  DEFAULT = 'default',
+  DATE = 'date',
+  VIEWS = 'views',
+}
 
 @Pipe({
   name: 'sortBy',
@@ -24,14 +29,14 @@ export class SortByPipe implements PipeTransform {
 
       let sortable = sortingString === '' ? arr : result;
 
-      if (sortingCriterion !== 'default') {
-        if (sortingCriterion === 'date') {
+      if (sortingCriterion !== status.DEFAULT) {
+        if (sortingCriterion === status.DATE) {
           sortable.sort((a: VideoItem, b: VideoItem) => {
             const dateA = new Date(a.snippet.publishedAt).getTime();
             const dateB = new Date(b.snippet.publishedAt).getTime();
             return dateA - dateB;
           });
-        } else if (sortingCriterion === 'views') {
+        } else if (sortingCriterion === status.VIEWS) {
           sortable.sort((a: VideoItem, b: VideoItem) => {
             const countA = +a.statistics.viewCount;
             const countB = +b.statistics.viewCount;

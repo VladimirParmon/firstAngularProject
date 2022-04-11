@@ -17,7 +17,7 @@ export class DataService {
   videosInfo$: Observable<VideoItem>;
   videosInfo$$ = new Subject<VideoItem>();
 
-  detailedVideoInfo: any;
+  detailedVideoInfo!: VideoItem;
   errorSpan: string = '';
 
   constructor(private http: HttpClient) {
@@ -26,14 +26,14 @@ export class DataService {
     this.videosInfo$ = this.videosInfo$$.asObservable().pipe(debounceTime(1000), distinctUntilChanged());
   }
 
-  updateSortingStatus(status: SortingStatus) {
+  updateSortingStatus(status: SortingStatus): void {
     this.sortingStatus$$.next(status);
   }
-  updateSortingString(value: string) {
+  updateSortingString(value: string): void {
     this.sortingString$$.next(value);
   }
 
-  updateInfo(info: VideoItem) {
+  updateInfo(info: VideoItem): void {
     this.videosInfo$$.next(info);
   }
 

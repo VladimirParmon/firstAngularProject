@@ -22,7 +22,7 @@ export class MainPageComponent implements OnInit {
   constructor(public service: DataService, private http: HttpClient) {
     this.infoList$ = this.getJSON();
   }
-  public getJSON() {
+  public getJSON(): Observable<VideoItem[]> {
     const query = this.http.get<APIVideoInfo>(this._jsonURL).pipe(map((el: APIVideoInfo) => el.items));
     return query;
   }
@@ -35,12 +35,9 @@ export class MainPageComponent implements OnInit {
     this.service.sortingString$$.subscribe((string: string) => {
       this.searchString = string;
     });
-    // this.service.videosInfo$$.subscribe((info: any) => {
-    //   this.infoList = info;
-    // });
   }
 
-  flipOrder(status: SortingStatus) {
+  flipOrder(status: SortingStatus): void {
     if (status === 'date') {
       this.isInDescOrder_Date = !this.isInDescOrder_Date;
     } else if (status === 'views') {

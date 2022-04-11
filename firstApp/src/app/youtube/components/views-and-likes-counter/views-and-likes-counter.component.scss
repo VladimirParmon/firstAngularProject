@@ -1,12 +1,12 @@
 .counter {
   display: flex;
 
-  div {
+  .counter__elem {
     display: flex;
     margin: 15px 10px;
   }
 
-  img {
+  .counter__img {
     margin-right: 5px;
   }
 }

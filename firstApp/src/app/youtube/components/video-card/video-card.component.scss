@@ -1,8 +1,10 @@
+@use '../../../../styles.scss';
+
 .card {
   position: relative;
   width: 365px;
   height: 450px;
-  background-color: #e5e5e5;
+  background-color: styles.$primary-color;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -11,17 +13,17 @@
   margin: 30px 15px 30px 15px;
   border-radius: 5px;
 
-  img {
+  .card__img {
     width: 320px;
     height: auto;
   }
 
-  button {
+  .card__button {
     position: absolute;
     bottom: 10px;
     width: 130px;
     height: 30px;
-    background-color: #2f80ed;
+    background-color: styles.$blue-accent;
     border: none;
     border-radius: 5px;
     color: white;
