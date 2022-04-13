@@ -1,0 +1,43 @@
+@use '../../../../styles.scss';
+
+.card {
+  position: relative;
+  width: 365px;
+  height: 450px;
+  background-color: styles.$primary-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  margin: 30px 15px 30px 15px;
+  border-radius: 5px;
+
+  .card__img {
+    width: 320px;
+    height: auto;
+  }
+
+  .card__button {
+    position: absolute;
+    bottom: 10px;
+    width: 130px;
+    height: 30px;
+    background-color: styles.$blue-accent;
+    border: none;
+    border-radius: 5px;
+    color: white;
+  }
+}
+
+.red {
+  border-bottom: 5px solid red;
+}
+
+.green {
+  border-bottom: 5px solid green;
+}
+
+.blue {
+  border-bottom: 5px solid blue;
+}

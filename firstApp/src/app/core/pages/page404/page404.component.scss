@@ -1,0 +1,22 @@
+.pageContent {
+  width: 100vw;
+  height: calc(100vh - 130px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageContent__flexbox-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  span {
+    font-size: 4vh;
+  }
+
+  img {
+    margin-right: 15px;
+  }
+}

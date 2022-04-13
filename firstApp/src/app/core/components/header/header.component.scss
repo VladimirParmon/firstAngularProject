@@ -1,0 +1,84 @@
+@use '../../../../styles.scss';
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: styles.$primary-color;
+  min-height: 80px;
+  z-index: 1;
+}
+
+.header__search-menu,
+.header__login-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__button_toggle-search-options {
+  background-image: url(../../../../assets/svg/settings.svg);
+  background-position: center center;
+  background-size: 100%;
+}
+
+.header__button_profile {
+  background-image: url(../../../../assets/svg/login.svg);
+  background-size: 130%;
+  background-position: -2px -2px;
+}
+
+.header__button_toggle-search-options,
+.header__button_profile {
+  border: none;
+  background-color: rgba($color: #000000, $alpha: 0);
+  background-repeat: no-repeat;
+  min-width: 24px;
+  min-height: 24px;
+  margin-left: 10px;
+}
+
+.header__button_admin-page,
+.header__button_logout {
+  width: 80px;
+  height: 24px;
+  background-color: styles.$blue-accent;
+  border: none;
+  border-radius: 4px;
+  margin-left: 5px;
+  color: white;
+}
+
+.header__search-menu {
+  flex-grow: 2;
+  // We do not want to use class here instead of
+  // tags - the style declaration is already inside a class
+  // & structure of the element is strictly fixed.
+  // The element is supposed to have only one img and one input inside,
+  // and this is what those tags are here for - to imply that.
+  img {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  input {
+    height: 24px;
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+.header__login-block {
+  flex-grow: 1;
+}
+
+.header__searchbar {
+  padding: 0 5px 0 5px;
+  border-radius: 0;
+  border: none;
+}
+
+app-sorting-menu {
+  display: block;
+  overflow: hidden;
+}
+

@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div class="pageContent">
+  <form (ngSubmit)="onSubmitLogin()" class="loginForm" [formGroup]="loginForm" *ngIf="isLoginWindowShown" [@windowTransition]>
+    <span class="form-span loginForm__span">Login</span>
+
+    <label for="loginForm__input_name" class="loginForm__label">E-mail:</label>
+    <input formControlName="loginEmail" type="text" name="loginName" autocomplete="off" required class="form-input loginForm__input" id="loginForm__input_name">
+    <div class="loginForm__error-container" *ngIf="loginForm.invalid && (forms['loginEmail'].dirty || forms['loginEmail'].touched)">
+      <p *ngIf="forms['loginEmail'].errors?.['required']">Please enter a login email</p>
+      <p *ngIf="forms['loginEmail'].errors?.['email']">The login email is invalid</p>
+    </div>
+
+    <label for="loginForm__input_password" class="loginForm__label">Password:</label>
+    <input formControlName="loginPassword" type="text" name="loginPassword" autocomplete="off" required class="form-input loginForm__input" id="loginForm__input_password">
+    <div class="loginForm__error-container" *ngIf="loginForm.invalid && (forms['loginPassword'].dirty || forms['loginPassword'].touched)">
+      <p *ngIf="forms['loginPassword'].errors?.['required']">Please enter a password</p>
+      <p class="loginForm__p loginForm__p_centered" *ngIf="forms['loginPassword'].errors?.['passwordValidation'] && !forms['loginPassword'].errors?.['required']">Your password isn't strong enough</p>
+      <ul *ngIf="!forms['loginPassword'].errors?.['required']">
+        <li *ngIf="forms['loginPassword'].errors?.['stringLengthFail']">at least 8 characters</li>
+        <li *ngIf="forms['loginPassword'].errors?.['caseFail']">a mixture of both uppercase and lowercase letters</li>
+        <li *ngIf="forms['loginPassword'].errors?.['charFail']">a mixture of letters and numbers</li>
+        <li *ngIf="forms['loginPassword'].errors?.['symbolFail']">inclusion of at least one special character, e.g., ! @ # ? ]</li>
+      </ul>
+    </div>
+
+    <div class="button-wrapper loginForm__button-wrapper">
+      <button type="button" (click)="menuFlipper()">Registration</button>
+      <button class="loginForm__button" [disabled]="!loginForm.valid">Login</button>
+    </div>
+  </form>
+
+  <form (ngSubmit)="onSubmitReg()" class="registrationForm" *ngIf="!isLoginWindowShown" [@windowTransition]>
+    <span class="form-span registrationForm__span">Registration</span>
+
+    <label for="registrationForm__input_name" class="loginForm__label">Name:</label>
+    <input id="registrationForm__input_name" type="text" autocomplete="off" required class="form-input registrationForm__input">
+
+    <label for="registrationForm__input_surname" class="loginForm__label">Surname:</label>
+    <input id="registrationForm__input_surname" type="text" autocomplete="off" required class="form-input registrationForm__input">
+
+    <label for="registrationForm__input_email" class="loginForm__label">E-mail:</label>
+    <input id="registrationForm__input_email" type="text" autocomplete="off" required class="form-input registrationForm__input">
+
+    <label for="registrationForm__input_password" class="loginForm__label">Password:</label>
+    <input id="registrationForm__input_password" type="text" autocomplete="off" required class="form-input registrationForm__input">
+
+    <div class="button-wrapper registrationForm__button-wrapper">
+      <button type="button" (click)="menuFlipper()">Login</button>
+      <button>Registration</button>
+    </div>
+  </form>
+</div>

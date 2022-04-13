@@ -1,0 +1,6 @@
+<div class="card" appHighlight [publishedAt]="video.snippet.publishedAt">
+  <img class="card__img" src="{{video.snippet.thumbnails['high'].url}}" alt={{video.snippet.title}}>
+  <app-views-and-likes-counter [stats]="video.statistics"></app-views-and-likes-counter>
+  <p class="card__p">{{ video.snippet.title }}</p>
+  <button class="card__button" routerLink="/detailed-info" (click)="pushForRouting()">more...</button>
+</div>
