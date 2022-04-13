@@ -7,6 +7,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./admin-page.component.scss'],
 })
 export class AdminPageComponent {
+  isSubmissionMessageSeen: boolean = false;
   reg = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 
   createForm = this.fb.group({
@@ -19,6 +20,10 @@ export class AdminPageComponent {
   constructor(private fb: FormBuilder) {}
 
   onSubmit() {
+    this.isSubmissionMessageSeen = true;
+    setTimeout(() => {
+      this.isSubmissionMessageSeen = false;
+    }, 1500);
     //TODO: add cards to RXJS store
   }
 
