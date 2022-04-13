@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div class="wrapper">
+  <form class="adminPageForm" [formGroup]="createForm" (ngSubmit)="onSubmit()">
+    <h2>Create new card</h2>
+
+    <label for="adminPageForm__input_title" class="adminPageForm__label">Title: </label>
+    <input id="adminPageForm__input_title" class="adminPageForm__input" type="text" formControlName="title">
+    <div class="adminPageForm__error-container" *ngIf="createForm.invalid && (forms['title'].dirty || forms['title'].touched)">
+      <p *ngIf="forms['title'].errors?.['required']">Please enter a title</p>
+      <p *ngIf="forms['title'].errors?.['minlength']">The title is too short</p>
+      <p *ngIf="forms['title'].errors?.['maxlength']">The title is too long</p>
+    </div>
+
+    <label for="adminPageForm__input_description" class="adminPageForm__label">Description: </label>
+    <input id="adminPageForm__input_description" class="adminPageForm__input" type="text" formControlName="description">
+    <div class="adminPageForm__error-container" *ngIf="createForm.invalid && (forms['description'].dirty || forms['description'].touched)">
+      <p *ngIf="forms['description'].errors?.['maxlength']">The description is too long</p>
+    </div>
+
+    <label for="adminPageForm__input_thumbnail-link" class="adminPageForm__label">Thumbnail image: </label>
+    <input id="adminPageForm__input_thumbnail-link" class="adminPageForm__input" type="text" formControlName="thumbnail">
+    <div class="adminPageForm__error-container" *ngIf="createForm.invalid && (forms['thumbnail'].dirty || forms['thumbnail'].touched)">
+      <p *ngIf="forms['thumbnail'].errors?.['required']">Please enter a link to the image</p>
+      <p *ngIf="forms['thumbnail'].errors?.['pattern']">The image link is invalid</p>
+    </div>
+
+    <label for="adminPageForm__input_video-link" class="adminPageForm__label">Link video: </label>
+    <input id="adminPageForm__input_video-link" class="adminPageForm__input" type="text" formControlName="linkVideo">
+    <div class="adminPageForm__error-container" *ngIf="createForm.invalid && (forms['linkVideo'].dirty || forms['linkVideo'].touched)">
+      <p *ngIf="forms['linkVideo'].errors?.['required']">Please enter a link to the video</p>
+      <p *ngIf="forms['linkVideo'].errors?.['pattern']">The video link is invalid</p>
+    </div>
+
+    <p class="adminPageForm__warning-message">Complete the form to enable the button.</p>
+  <button class="adminPageForm__button" type="submit" [disabled]="!createForm.valid">Submit</button>
+
+  </form>
+</div>

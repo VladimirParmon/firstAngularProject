@@ -40,6 +40,10 @@ export class HeaderComponent {
     this.router.navigate(['']);
   }
 
+  goAdmin(): void {
+    this.router.navigate(['admin-page']);
+  }
+
   logout(): void {
     this.loginService.fakeLogout();
   }
