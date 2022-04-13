@@ -1,5 +1,7 @@
 import { animate, sequence, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
+import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -24,25 +26,84 @@ import { LoginService } from '../../services/login.service';
   ],
 })
 export class LoginPageComponent {
-  isLoginWindow: boolean = true;
-  loginName: string = '';
-  loginPassword: string = '';
-  regFirstName: string = '';
-  regLastName: string = '';
-  regMail: string = '';
-  regPassword: string = '';
+  isLoginWindowShown: boolean = true;
 
-  constructor(private service: LoginService) {}
+  loginForm = this.fb.group({
+    loginEmail: ['', Validators.compose([Validators.email, Validators.required])],
+    loginPassword: ['', [Validators.required, this.passwordValidator()]],
+  });
+
+  constructor(private service: LoginService, private router: Router, private fb: FormBuilder) {}
 
   menuFlipper(): void {
-    this.isLoginWindow = !this.isLoginWindow;
+    this.isLoginWindowShown = !this.isLoginWindowShown;
   }
 
   onSubmitLogin(): void {
-    this.service.fakeLogin(this.loginName);
+    this.service.fakeLogin(this.loginForm.value.loginEmail);
   }
 
   onSubmitReg() {
     //TODO: user registration
+  }
+
+  passwordValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const string = control.value;
+
+      let stringLength: boolean = false;
+      let upperCase: boolean = false;
+      let lowerCase: boolean = false;
+      let letter: boolean = false;
+      let number: boolean = false;
+      let symbol: boolean = false;
+
+      let isValid: boolean = false;
+
+      const validate = (): boolean => {
+        const arr = string.split('');
+        const symbols: string[] = ['!', '@', '#', '?', ']', '[', ')', '(', '%', '{', '}'];
+        let result: boolean = false;
+
+        if (string.length >= 8) stringLength = true;
+
+        arr.forEach((element: string) => {
+          if (isNaN(Number(element))) {
+            letter = true;
+            if (symbols.includes(element)) {
+              symbol = true;
+            } else {
+              if (element.toUpperCase() === element) upperCase = true;
+              if (element.toLowerCase() === element) lowerCase = true;
+            }
+          } else {
+            number = true;
+          }
+        });
+
+        if (upperCase && lowerCase && letter && number && symbol && stringLength) result = true;
+        return result;
+      };
+
+      isValid = validate();
+
+      if (isValid) {
+        return null;
+      } else {
+        const caseFail = upperCase && lowerCase;
+        const charFail = letter && number;
+        return {
+          passwordValidation: true,
+          caseFail: !caseFail,
+          charFail: !charFail,
+          stringLengthFail: !stringLength,
+          symbolFail: !symbol,
+        };
+      }
+    };
+  }
+
+  get forms() {
+    return this.loginForm.controls;
   }
 }
