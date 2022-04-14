@@ -1,0 +1,87 @@
+@use '../../../../styles.scss';
+
+.pageContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 130px);
+}
+
+.loginForm,
+.registrationForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 350px;
+  padding: 30px 20px 30px 20px;
+  border-radius: 18px;
+  background-color: styles.$forms-background;
+  position: absolute;
+}
+
+.form-input {
+  height: 40px;
+  width: 100%;
+  border: none;
+  background-color: styles.$input-background;
+  padding: 0 10px;
+  margin-bottom: 5px;
+}
+
+.form-span {
+  margin: 0 15px 0 0;
+  align-self: flex-start;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.loginForm__label {
+  align-self: flex-start;
+  margin-left: 15px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.button-wrapper {
+  display: flex;
+  margin-top: 15px;
+
+  button {
+    border: none;
+
+    &:first-child {
+      text-decoration: underline;
+      color: styles.$blue-accent;
+    }
+
+    &:last-child {
+      margin-left: 15px;
+      background-color: styles.$blue-accent;
+      width: 120px;
+      height: 30px;
+      border-radius: 5px;
+      color: white;
+    }
+  }
+
+  .loginForm__button:disabled {
+    background-color: styles.$button-inactive;
+  }
+}
+
+
+
+ul {
+  list-style-position: inside;
+}
+
+.ng-invalid:not(.ng-pristine):not(form) {
+  border-left: 5px solid styles.$input-error;
+}
+
+.loginForm__p_centered {
+  text-align: center;
+  margin-bottom: 5px;
+}

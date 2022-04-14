@@ -1,0 +1,14 @@
+<header>
+    <div class="header__search-menu">
+      <img src="../../../../assets/svg/logo.svg" alt="Youtube logo" (click)="goHome()">
+      <input type="text" placeholder="What do you want to find?" class="header__searchbar" [(ngModel)]="searchBarString" (ngModelChange)="search()">
+      <button class="header__button header__button_toggle-search-options" (click)="toggle()"></button>
+    </div>
+    <div class="header__login-block">
+      <span>{{loginService.userName}}</span>
+      <button class="header__button header__button_profile"></button>
+      <button class="header__button header__button_logout" *ngIf="loginService.isAuthorized" (click)="logout()">Logout</button>
+      <button class="header__button header__button_admin-page" *ngIf="loginService.isAuthorized" (click)="goAdmin()">Admin</button>
+    </div>
+  </header>
+  <app-sorting-menu [@searchOptionsOpenClose]="isHeaderSearchOptionsMenuOpen ? 'open' : 'closed'"></app-sorting-menu>

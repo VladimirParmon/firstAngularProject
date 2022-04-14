@@ -1,0 +1,7 @@
+<div class="dropDownSortingMenu">
+  <span>Sorting by:</span>
+  <button class="dropDownSortingMenu__button" (click)="updateSearchingRequirements('date')">date</button>
+  <button class="dropDownSortingMenu__button" (click)="updateSearchingRequirements('views')">count of views</button>
+  <span>by word or sentence</span>
+  <input type="text" class="dropDownSortingMenu__input" (keyup)="updateSearchingString($event)">
+</div>
