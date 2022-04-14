@@ -17,14 +17,8 @@ export class MainPageComponent implements OnInit {
   isInDescOrder_Date: boolean = false;
   isInDescOrder_Views: boolean = false;
 
-  private _jsonURL = '../../assets/response.json';
-
-  constructor(public service: DataService, private http: HttpClient) {
-    this.infoList$ = this.getJSON();
-  }
-  public getJSON(): Observable<VideoItem[]> {
-    const query = this.http.get<APIVideoInfo>(this._jsonURL).pipe(map((el: APIVideoInfo) => el.items));
-    return query;
+  constructor(public service: DataService) {
+    this.infoList$ = this.service.videosInfo$;
   }
 
   ngOnInit(): void {
