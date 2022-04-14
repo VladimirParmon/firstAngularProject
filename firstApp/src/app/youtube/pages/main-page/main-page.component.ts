@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { catchError, map, Observable, of, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { SortingStatus } from 'src/app/models/sortingLogic';
-import { APIVideoInfo, VideoItem } from 'src/app/models/youtubeResponse';
+import { VideoItem } from 'src/app/models/youtubeResponse';
 import { DataService } from '../../services/data.service';
 
 @Component({

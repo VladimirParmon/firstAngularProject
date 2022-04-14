@@ -15,7 +15,7 @@ export class DetailedInfoPageComponent implements OnInit {
     : this.videoInfo.snippet.thumbnails['standard'].url;
 
   constructor(private service: DataService, private location: Location) {
-    // this.videoInfo = this.service.detailedVideoInfo;
+    // this.videoInfo = this.service.detailedVideoInfo; <-- Should I do it like this?
   }
 
   ngOnInit(): void {

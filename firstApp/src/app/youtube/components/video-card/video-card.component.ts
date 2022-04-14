@@ -13,7 +13,6 @@ export class VideoCardComponent {
   constructor(private service: DataService) {}
 
   pushForRouting(): void {
-    console.log(this.video);
     this.service.detailedVideoInfo = this.video;
   }
 }
