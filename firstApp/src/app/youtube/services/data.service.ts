@@ -64,20 +64,16 @@ export class DataService {
   }
 
   getVideos(searchString: string) {
-    return this.fetchSearchResults(searchString)
-      .pipe(
-        switchMap((response: SearchList) => {
-          const searchResults = response.items.map((el: SearchListItem) => el.id.videoId);
-          return this.fetchVideosById(searchResults);
-        }),
-        map((el: APIVideoInfo) => el.items),
-        catchError((error) => {
-          this.displayErrorInDOM(error);
-          return of([]);
-        })
-      )
-      .subscribe((data: VideoItem[]) => {
-        return this.updateInfo(data);
-      });
+    return this.fetchSearchResults(searchString).pipe(
+      switchMap((response: SearchList) => {
+        const searchResults = response.items.map((el: SearchListItem) => el.id.videoId);
+        return this.fetchVideosById(searchResults);
+      }),
+      map((el: APIVideoInfo) => el.items)
+      // catchError((error) => {
+      //   this.displayErrorInDOM(error);
+      //   return of([]);
+      // })
+    );
   }
 }
