@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { addCustomCard } from 'src/app/redux/actions/youtube.actions';
 
 @Component({
   selector: 'app-admin',
@@ -17,14 +19,23 @@ export class AdminPageComponent {
     linkVideo: ['', Validators.compose([Validators.pattern(this.reg), Validators.required])],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   onSubmit() {
     this.isSubmissionMessageSeen = true;
     setTimeout(() => {
       this.isSubmissionMessageSeen = false;
     }, 1500);
-    //TODO: add cards to RXJS store
+    this.store.dispatch(
+      addCustomCard({
+        info: {
+          title: this.createForm.value.title,
+          description: this.createForm.value.description,
+          thumbnailUrl: this.createForm.value.thumbnail,
+          videoUrl: this.createForm.value.linkVideo,
+        },
+      })
+    );
   }
 
   get forms() {

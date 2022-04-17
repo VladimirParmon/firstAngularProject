@@ -1,14 +1,15 @@
 import { createReducer, on } from '@ngrx/store';
+import { CustomCard } from 'src/app/models/customCard';
 
 import { addCustomCard, deleteCustomCard } from '../actions/youtube.actions';
 
-const initialState = {
+const initialState: { data: CustomCard[] } = {
   data: [],
 };
 
 export const customCardsReducer = createReducer(
   initialState,
-  on(addCustomCard, (state: any, action) => ({
+  on(addCustomCard, (state, action) => ({
     ...state,
     data: [...state.data, action.info],
   }))

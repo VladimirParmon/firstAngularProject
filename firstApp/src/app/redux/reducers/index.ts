@@ -1,4 +1,5 @@
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
+import { CustomCard } from 'src/app/models/customCard';
 import { VideoItem } from 'src/app/models/youtubeResponse';
 import { environment } from '../../../environments/environment';
 import { APIVideosReducer } from './APIVideos.reducers';
@@ -7,7 +8,9 @@ import { errorReducer } from './error.reducers';
 
 export interface State {
   APIVideosState: VideoItem[];
-  customCardsState: any;
+  customCardsState: {
+    data: CustomCard[];
+  };
   errorState: string;
 }
 

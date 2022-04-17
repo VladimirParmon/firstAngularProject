@@ -1,6 +1,6 @@
 export interface CustomCard {
   title: string;
   description: string;
-  imageUrl: string;
+  thumbnailUrl: string;
   videoUrl: string;
 }
