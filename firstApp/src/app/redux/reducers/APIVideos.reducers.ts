@@ -1,14 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
+import { VideoItem } from 'src/app/models/youtubeResponse';
 
-import { loadAPIVideosFailure, loadAPIVideosSuccess } from '../actions/youtube.actions';
+import { loadAPIVideosSuccess } from '../actions/youtube.actions';
 
-const initialState = {};
+const initialState: VideoItem[] = [];
 
 export const APIVideosReducer = createReducer(
   initialState,
-  on(loadAPIVideosSuccess, (state, action) => action)
-  // on(loadAPIVideosFailure, (state, action) => {
-  //   console.log(action.error.error.error.message);
-  //   return state;
-  // })
+  on(loadAPIVideosSuccess, (state, action) => action.videos)
 );
