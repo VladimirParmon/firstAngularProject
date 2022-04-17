@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
@@ -29,7 +29,6 @@ export class DataService {
   videosInfo$$ = new Subject<VideoItem[]>();
 
   detailedVideoInfo!: VideoItem;
-  errorSpan: string = '';
 
   constructor(private http: HttpClient) {
     this.sortingStatus$ = this.sortingStatus$$.asObservable();
@@ -57,13 +56,14 @@ export class DataService {
     return this.http.get<APIVideoInfo>(`videos?id=${arrayOfIDs}&part=snippet,statistics`);
   }
 
-  private displayErrorInDOM(error: any) {
-    const errorMessage = error.error.error.message;
+  public getMessageFromError(error: HttpErrorResponse): string {
     const regex = /(<([^>]+)>)/gi;
-    this.errorSpan = errorMessage.replace(regex, '');
+    const errorMessage = error.error.error.message;
+    const result = errorMessage.replace(regex, '');
+    return result;
   }
 
-  getVideos(searchString: string) {
+  getVideos(searchString: string): Observable<VideoItem[]> {
     return this.fetchSearchResults(searchString).pipe(
       switchMap((response: SearchList) => {
         const searchResults = response.items.map((el: SearchListItem) => el.id.videoId);
