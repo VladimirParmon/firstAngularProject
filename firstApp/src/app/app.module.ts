@@ -15,6 +15,7 @@ import { reducers, metaReducers } from './redux/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { YoutubeEffects } from './redux/effects/youtube.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,7 +32,7 @@ import { EffectsModule } from '@ngrx/effects';
       metaReducers,
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([YoutubeEffects]),
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: YoutubeInterceptor, multi: true }],
   bootstrap: [AppComponent],
