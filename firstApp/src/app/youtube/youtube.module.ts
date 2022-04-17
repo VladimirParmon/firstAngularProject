@@ -12,6 +12,7 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { SortOrderPipe } from './pipes/sort-order.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { CustomVideoCardComponent } from './components/custom-video-card/custom-video-card.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
     SortOrderPipe,
     HighlightDirective,
     AdminPageComponent,
+    CustomVideoCardComponent,
   ],
   imports: [CommonModule, YoutubeRoutingModule, CoreModule, ReactiveFormsModule],
 })
