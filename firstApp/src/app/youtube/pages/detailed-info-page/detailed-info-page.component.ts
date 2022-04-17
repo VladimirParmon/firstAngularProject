@@ -10,16 +10,16 @@ import { Location } from '@angular/common';
 })
 export class DetailedInfoPageComponent implements OnInit {
   videoInfo!: VideoItem;
-  imageUrl: string = this.videoInfo.snippet.thumbnails['maxres'].url
-    ? this.videoInfo.snippet.thumbnails['maxres'].url
-    : this.videoInfo.snippet.thumbnails['standard'].url;
+  imageUrl: string = '';
 
   constructor(private service: DataService, private location: Location) {
-    // this.videoInfo = this.service.detailedVideoInfo; <-- Should I do it like this?
+    this.videoInfo = this.service.detailedVideoInfo;
   }
 
   ngOnInit(): void {
-    this.videoInfo = this.service.detailedVideoInfo;
+    this.imageUrl = this.videoInfo.snippet.thumbnails['maxres']?.url
+      ? this.videoInfo.snippet.thumbnails['maxres'].url
+      : this.videoInfo.snippet.thumbnails['standard'].url;
   }
 
   goBack(): void {
