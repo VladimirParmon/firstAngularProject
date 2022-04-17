@@ -1,7 +1,9 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { LoginService } from 'src/app/auth/services/login.service';
+import { loadAPIVideos } from 'src/app/redux/actions/youtube.actions';
 import { DataService } from 'src/app/youtube/services/data.service';
 
 @Component({
@@ -30,7 +32,7 @@ export class HeaderComponent {
   isHeaderSearchOptionsMenuOpen: boolean = false;
   searchBarString: string = '';
 
-  constructor(private service: DataService, private router: Router, public loginService: LoginService) {}
+  constructor(private store: Store, private router: Router, public loginService: LoginService) {}
 
   toggle(): void {
     this.isHeaderSearchOptionsMenuOpen = !this.isHeaderSearchOptionsMenuOpen;
@@ -50,7 +52,7 @@ export class HeaderComponent {
 
   search(): void {
     if (this.searchBarString && this.searchBarString.length >= 3) {
-      this.service.getVideos(this.searchBarString);
+      this.store.dispatch(loadAPIVideos({ string: this.searchBarString }));
     }
   }
 }
