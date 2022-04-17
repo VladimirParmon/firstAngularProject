@@ -1,7 +1,20 @@
 <app-header></app-header>
 <div class="pageContent">
-  <div class="listOfVideos" *ngIf="infoList$ !== null">
-    <app-video-card *ngFor="let video of infoList$ | async | sortBy: sorting:searchString | sortOrder: sorting:isInDescOrder_Date:isInDescOrder_Views" [video]="video"></app-video-card>
-    <span class="listOfVideos__error-span" *ngIf="errorSpan$">{{errorSpan$ | async}}</span>
+
+  <span *ngIf="errorSpan$">{{errorSpan$ | async}}</span>
+
+  <div class="videoGroup">
+    <h2>Youtube search results:</h2>
+    <div id="listOfVideos">
+      <app-video-card *ngFor="let video of infoList$ | async | sortBy: sorting:searchString | sortOrder: sorting:isInDescOrder_Date:isInDescOrder_Views" [video]="video"></app-video-card>
+    </div>
   </div>
+
+  <div class="cardsGroup">
+    <h2>Custom cards:</h2>
+    <div class="listOfCards">
+      <app-custom-video-card *ngFor="let card of customCards$ | async" [card]="card"></app-custom-video-card>
+    </div>
+  </div>
+
 </div>
