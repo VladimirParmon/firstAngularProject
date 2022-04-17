@@ -36,6 +36,10 @@ export class AdminPageComponent {
         },
       })
     );
+
+    this.createForm.reset();
+    this.createForm.markAsPristine();
+    this.createForm.markAsUntouched();
   }
 
   get forms() {
