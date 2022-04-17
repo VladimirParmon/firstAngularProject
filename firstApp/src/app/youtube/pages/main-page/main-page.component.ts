@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SortingStatus } from 'src/app/models/sortingLogic';
 import { VideoItem } from 'src/app/models/youtubeResponse';
+import { selectErrorMessageInfo, selectYoutubeAPIData } from 'src/app/redux/selectors/youtube.selectors';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -15,9 +17,11 @@ export class MainPageComponent implements OnInit {
   searchString: string = '';
   isInDescOrder_Date: boolean = false;
   isInDescOrder_Views: boolean = false;
+  errorSpan$: Observable<string>;
 
-  constructor(public service: DataService) {
-    this.infoList$ = this.service.videosInfo$;
+  constructor(public service: DataService, private store: Store) {
+    this.infoList$ = this.store.select(selectYoutubeAPIData);
+    this.errorSpan$ = this.store.select(selectErrorMessageInfo);
   }
 
   ngOnInit(): void {
