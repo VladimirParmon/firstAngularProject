@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CustomCard } from 'src/app/models/customCard';
 
 @Component({
   selector: 'app-custom-video-card',
@@ -6,5 +7,5 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./custom-video-card.component.scss'],
 })
 export class CustomVideoCardComponent {
-  @Input() card: any;
+  @Input() card!: CustomCard;
 }

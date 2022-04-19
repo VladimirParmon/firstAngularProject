@@ -1,10 +1,9 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { LoginService } from 'src/app/auth/services/login.service';
 import { loadAPIVideos } from 'src/app/redux/actions/youtube.actions';
-import { DataService } from 'src/app/youtube/services/data.service';
 
 @Component({
   selector: 'app-header',

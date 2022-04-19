@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { loadAPIVideos, loadAPIVideosFailure, loadAPIVideosSuccess } from '../actions/youtube.actions';
 import { DataService } from '../../youtube/services/data.service';
-import { catchError, debounceTime, distinctUntilChanged, EMPTY, map, mergeMap, Observable, of, switchMap } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, map, mergeMap, of } from 'rxjs';
 import { VideoItem } from 'src/app/models/youtubeResponse';
 import { HttpErrorResponse } from '@angular/common/http';
 

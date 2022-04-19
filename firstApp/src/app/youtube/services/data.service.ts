@@ -1,16 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  catchError,
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  Observable,
-  of,
-  Subject,
-  switchMap,
-} from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, map, Observable, Subject, switchMap } from 'rxjs';
 import { SortingStatus } from 'src/app/models/sortingLogic';
 import { APIVideoInfo, VideoItem } from 'src/app/models/youtubeResponse';
 import { SearchList, SearchListItem } from 'src/app/models/youtubeSearchList';
@@ -70,10 +60,6 @@ export class DataService {
         return this.fetchVideosById(searchResults);
       }),
       map((el: APIVideoInfo) => el.items)
-      // catchError((error) => {
-      //   this.displayErrorInDOM(error);
-      //   return of([]);
-      // })
     );
   }
 }
