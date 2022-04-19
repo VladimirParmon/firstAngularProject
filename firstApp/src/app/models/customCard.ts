@@ -3,4 +3,5 @@ export interface CustomCard {
   description: string;
   thumbnailUrl: string;
   videoUrl: string;
+  id: number;
 }

@@ -13,4 +13,4 @@ export const loadAPIVideosFailure = createAction(
 );
 
 export const addCustomCard = createAction('[Youtube] Add a custom card', props<{ info: CustomCard }>());
-export const deleteCustomCard = createAction('[Youtube] Delete a custom card', props<{ cardId: string }>());
+export const deleteCustomCard = createAction('[Youtube] Delete a custom card', props<{ cardId: number }>());
