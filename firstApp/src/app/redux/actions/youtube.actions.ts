@@ -11,6 +11,14 @@ export const loadAPIVideosFailure = createAction(
   '[Youtube] FAILURE: load videos from YT API',
   props<{ errorMessage: string }>()
 );
+export const loadSingleAPIVideo = createAction(
+  '[Youtube] load a single video from YT API',
+  props<{ string: string[] }>()
+);
+export const loadSingleAPIVideoSuccess = createAction(
+  '[Youtube] SUCCESS: load a single video from YT API',
+  props<{ video: VideoItem[] }>()
+);
 
 export const addCustomCard = createAction('[Youtube] Add a custom card', props<{ info: CustomCard }>());
 export const deleteCustomCard = createAction('[Youtube] Delete a custom card', props<{ cardId: number }>());
