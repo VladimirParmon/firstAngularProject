@@ -1,6 +1,9 @@
 <app-header></app-header>
 <div class="pageContent">
-  <div class="detailedInfo">
+
+  <span *ngIf="errorSpan$">{{errorSpan$ | async}}</span>
+
+  <div class="detailedInfo" *ngIf="videoInfo">
     <button class="detailedInfo__return-button" (click)="goBack()">〈</button>
     <img class="detailedInfo__img" src="{{imageUrl}}">
     <div class="detailedInfo__inner-description">
