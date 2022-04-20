@@ -33,7 +33,7 @@ export class HeaderComponent {
 
   constructor(private store: Store, private router: Router, public loginService: LoginService) {}
 
-  toggle(): void {
+  toggleMenu(): void {
     this.isHeaderSearchOptionsMenuOpen = !this.isHeaderSearchOptionsMenuOpen;
   }
 

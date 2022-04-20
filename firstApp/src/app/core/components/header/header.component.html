@@ -2,7 +2,7 @@
     <div class="header__search-menu">
       <img src="../../../../assets/svg/logo.svg" alt="Youtube logo" (click)="goHome()">
       <input type="text" placeholder="What do you want to find?" class="header__searchbar" [(ngModel)]="searchBarString" (ngModelChange)="search()">
-      <button class="header__button header__button_toggle-search-options" (click)="toggle()"></button>
+      <button class="header__button header__button_toggle-search-options" (click)="toggleMenu()"></button>
     </div>
     <div class="header__login-block">
       <span>{{loginService.userName}}</span>
