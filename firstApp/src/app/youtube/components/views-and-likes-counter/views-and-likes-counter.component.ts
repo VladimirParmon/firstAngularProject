@@ -8,29 +8,31 @@ import { Statistics } from 'src/app/models/youtubeResponse';
   styleUrls: ['./views-and-likes-counter.component.scss'],
 })
 export class ViewsAndLikesCounterComponent implements OnInit {
-  @Input() stats!: Statistics;
+  @Input() stats!: Statistics | undefined;
   partsOfTheCounter: PartOfViewsAndLikesCounter[] = [];
 
   constructor() {}
 
   ngOnInit(): void {
-    this.partsOfTheCounter = [
-      {
-        imgName: 'viewed',
-        data: this.stats.viewCount,
-      },
-      {
-        imgName: 'liked',
-        data: this.stats.likeCount,
-      },
-      {
-        imgName: 'dislike',
-        data: this.stats.dislikeCount,
-      },
-      {
-        imgName: 'comments',
-        data: this.stats.commentCount,
-      },
-    ];
+    if (this.stats) {
+      this.partsOfTheCounter = [
+        {
+          imgName: 'viewed',
+          data: this.stats.viewCount,
+        },
+        {
+          imgName: 'liked',
+          data: this.stats.likeCount,
+        },
+        {
+          imgName: 'dislike',
+          data: this.stats.dislikeCount,
+        },
+        {
+          imgName: 'comments',
+          data: this.stats.commentCount,
+        },
+      ];
+    }
   }
 }
