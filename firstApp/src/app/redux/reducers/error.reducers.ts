@@ -6,5 +6,5 @@ const initialState: string = '';
 
 export const errorReducer = createReducer(
   initialState,
-  on(loadAPIVideosFailure, (state, action) => action.errorMessage)
+  on(loadAPIVideosFailure, (state: string, action: { errorMessage: string }) => action.errorMessage)
 );

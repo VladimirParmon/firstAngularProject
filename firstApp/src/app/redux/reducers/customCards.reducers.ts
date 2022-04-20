@@ -9,7 +9,7 @@ const initialState: { data: CustomCard[] } = {
 
 export const customCardsReducer = createReducer(
   initialState,
-  on(addCustomCard, (state, action) => ({
+  on(addCustomCard, (state: { data: CustomCard[] }, action: { info: CustomCard }) => ({
     ...state,
     data: [...state.data, action.info],
   })),

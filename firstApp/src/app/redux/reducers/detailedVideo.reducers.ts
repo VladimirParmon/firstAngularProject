@@ -7,5 +7,5 @@ const initialState: VideoItem[] = [];
 
 export const detailedVideoInfoReducer = createReducer(
   initialState,
-  on(loadSingleAPIVideoSuccess, (state, action) => action.video)
+  on(loadSingleAPIVideoSuccess, (state: VideoItem[], action: { video: VideoItem[] }) => action.video)
 );
