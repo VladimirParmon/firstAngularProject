@@ -4,10 +4,12 @@ import { VideoItem } from 'src/app/models/youtubeResponse';
 import { environment } from '../../../environments/environment';
 import { APIVideosReducer } from './APIVideos.reducers';
 import { customCardsReducer } from './customCards.reducers';
+import { detailedVideoInfoReducer } from './detailedVideo.reducers';
 import { errorReducer } from './error.reducers';
 
 export interface State {
   APIVideosState: VideoItem[];
+  detailedVideoInfoState: VideoItem[];
   customCardsState: {
     data: CustomCard[];
   };
@@ -17,6 +19,7 @@ export interface State {
 export const reducers: ActionReducerMap<State> = {
   APIVideosState: APIVideosReducer,
   customCardsState: customCardsReducer,
+  detailedVideoInfoState: detailedVideoInfoReducer,
   errorState: errorReducer,
 };
 
