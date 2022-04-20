@@ -42,7 +42,7 @@ export class DataService {
     return this.http.get<SearchList>(`search?q=${searchString}&maxResults=15&&type=video`);
   }
 
-  private fetchVideosById(arrayOfIDs: string[]): Observable<APIVideoInfo> {
+  public fetchVideosById(arrayOfIDs: string[]): Observable<APIVideoInfo> {
     return this.http.get<APIVideoInfo>(`videos?id=${arrayOfIDs}&part=snippet,statistics`);
   }
 
