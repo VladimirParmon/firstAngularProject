@@ -1,7 +1,6 @@
 import { animate, sequence, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -28,12 +27,12 @@ import { LoginService } from '../../services/login.service';
 export class LoginPageComponent {
   isLoginWindowShown: boolean = true;
 
-  loginForm = this.fb.group({
+  loginForm: FormGroup = this.fb.group({
     loginEmail: ['', Validators.compose([Validators.email, Validators.required])],
     loginPassword: ['', [Validators.required, this.passwordValidator()]],
   });
 
-  constructor(private service: LoginService, private router: Router, private fb: FormBuilder) {}
+  constructor(private service: LoginService, private fb: FormBuilder) {}
 
   menuFlipper(): void {
     this.isLoginWindowShown = !this.isLoginWindowShown;
@@ -103,7 +102,7 @@ export class LoginPageComponent {
     };
   }
 
-  get forms() {
+  get formControls(): { [key: string]: AbstractControl } {
     return this.loginForm.controls;
   }
 }
