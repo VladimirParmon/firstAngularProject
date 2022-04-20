@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { addCustomCard } from 'src/app/redux/actions/youtube.actions';
 
@@ -10,9 +10,9 @@ import { addCustomCard } from 'src/app/redux/actions/youtube.actions';
 })
 export class AdminPageComponent {
   isSubmissionMessageSeen: boolean = false;
-  reg = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+  reg: RegExp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 
-  createForm = this.fb.group({
+  createForm: FormGroup = this.fb.group({
     title: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(20), Validators.required])],
     description: ['', Validators.maxLength(255)],
     thumbnail: ['', Validators.compose([Validators.pattern(this.reg), Validators.required])],
@@ -21,7 +21,7 @@ export class AdminPageComponent {
 
   constructor(private fb: FormBuilder, private store: Store) {}
 
-  onSubmit() {
+  onSubmit(): void {
     this.isSubmissionMessageSeen = true;
     setTimeout(() => {
       this.isSubmissionMessageSeen = false;
@@ -43,7 +43,7 @@ export class AdminPageComponent {
     this.createForm.markAsUntouched();
   }
 
-  get forms() {
+  get formControls(): { [key: string]: AbstractControl } {
     return this.createForm.controls;
   }
 }
