@@ -7,7 +7,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 
 const routes: Routes = [
   {
-    path: 'detailed-info',
+    path: 'detailed-info/:videoId',
     component: DetailedInfoPageComponent,
     canActivate: [GeneralRoutingGuard],
     canLoad: [GeneralRoutingGuard],

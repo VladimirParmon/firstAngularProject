@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { VideoItem } from 'src/app/models/youtubeResponse';
-import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-video-card',
@@ -10,9 +10,9 @@ import { DataService } from '../../services/data.service';
 export class VideoCardComponent {
   @Input() video!: VideoItem;
 
-  constructor(private service: DataService) {}
+  constructor(private router: Router) {}
 
-  pushForRouting(): void {
-    this.service.detailedVideoInfo = this.video;
+  goToDetailedPage(): void {
+    this.router.navigate(['/detailed-info', this.video.id]);
   }
 }
