@@ -82,19 +82,28 @@ export class LoginPageComponent {
 
       validationResult = validateUsingRegex(password);
 
+      enum WhatFailed {
+        lowerCase = 'lowerCaseFailed',
+        upperCase = 'upperCaseFailed',
+        integer = 'integerFailed',
+        symbol = 'symbolFailed',
+        length = 'lengthFailed',
+      }
+
       if (validationResult === true) {
         return null;
       } else {
-        const caseMixtureFail: boolean = validationResult['upperCaseFailed'] || validationResult['lowerCaseFailed'];
+        const caseMixtureFail: boolean =
+          validationResult[WhatFailed.upperCase] || validationResult[WhatFailed.lowerCase];
         const integerAndLetterMixtureFail: boolean =
-          validationResult['integerFailed'] ||
-          (validationResult['upperCaseFailed'] && validationResult['lowerCaseFailed']);
+          validationResult[WhatFailed.integer] ||
+          (validationResult[WhatFailed.upperCase] && validationResult[WhatFailed.lowerCase]);
         return {
           passwordValidation: true,
           caseFail: caseMixtureFail,
           charFail: integerAndLetterMixtureFail,
-          stringLengthFail: validationResult['lengthFailed'],
-          symbolFail: validationResult['symbolFailed'],
+          stringLengthFail: validationResult[WhatFailed.integer],
+          symbolFail: validationResult[WhatFailed.symbol],
         };
       }
     };
