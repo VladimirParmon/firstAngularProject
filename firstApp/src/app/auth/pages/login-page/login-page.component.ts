@@ -1,6 +1,7 @@
 import { animate, sequence, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { WhatFailedDuringPasswordValidation } from 'src/app/models/other';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -48,55 +49,52 @@ export class LoginPageComponent {
 
   passwordValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      const string = control.value;
+      const password: string = control.value;
 
-      let stringLength: boolean = false;
-      let upperCase: boolean = false;
-      let lowerCase: boolean = false;
-      let letter: boolean = false;
-      let number: boolean = false;
-      let symbol: boolean = false;
+      let validationResult: boolean | WhatFailedDuringPasswordValidation = false;
 
-      let isValid: boolean = false;
+      const validateUsingRegex = (password: string) => {
+        enum checkFor {
+          lowerCase = '(?=.*[a-z])',
+          upperCase = '(?=.*[A-Z])',
+          integer = '(?=.*[0-9])',
+          symbol = '(?=.*[!@#$%^&*])',
+          length = '(?=.{8,})',
+        }
+        const overallValidityRegExp: RegExp = new RegExp(
+          checkFor.integer + checkFor.length + checkFor.lowerCase + checkFor.symbol + checkFor.upperCase
+        );
 
-      const validate = (): boolean => {
-        const arr = string.split('');
-        const symbols: string[] = ['!', '@', '#', '?', ']', '[', ')', '(', '%', '{', '}'];
-        let result: boolean = false;
+        const isValidPassword: boolean = overallValidityRegExp.test(password);
 
-        if (string.length >= 8) stringLength = true;
-
-        arr.forEach((element: string) => {
-          if (isNaN(Number(element))) {
-            letter = true;
-            if (symbols.includes(element)) {
-              symbol = true;
-            } else {
-              if (element.toUpperCase() === element) upperCase = true;
-              if (element.toLowerCase() === element) lowerCase = true;
-            }
-          } else {
-            number = true;
-          }
-        });
-
-        if (upperCase && lowerCase && letter && number && symbol && stringLength) result = true;
-        return result;
+        if (isValidPassword) {
+          return true;
+        } else {
+          return {
+            lowerCaseFailed: !new RegExp(checkFor.lowerCase).test(password),
+            upperCaseFailed: !new RegExp(checkFor.upperCase).test(password),
+            integerFailed: !new RegExp(checkFor.integer).test(password),
+            symbolFailed: !new RegExp(checkFor.symbol).test(password),
+            lengthFailed: !new RegExp(checkFor.length).test(password),
+          };
+        }
       };
 
-      isValid = validate();
+      validationResult = validateUsingRegex(password);
 
-      if (isValid) {
+      if (validationResult === true) {
         return null;
       } else {
-        const caseFail = upperCase && lowerCase;
-        const charFail = letter && number;
+        const caseMixtureFail = validationResult['upperCaseFailed'] || validationResult['lowerCaseFailed'];
+        const integerAndLetterMixtureFail =
+          validationResult['integerFailed'] ||
+          (validationResult['upperCaseFailed'] && validationResult['lowerCaseFailed']);
         return {
           passwordValidation: true,
-          caseFail: !caseFail,
-          charFail: !charFail,
-          stringLengthFail: !stringLength,
-          symbolFail: !symbol,
+          caseFail: caseMixtureFail,
+          charFail: integerAndLetterMixtureFail,
+          stringLengthFail: validationResult['lengthFailed'],
+          symbolFail: validationResult['symbolFailed'],
         };
       }
     };
