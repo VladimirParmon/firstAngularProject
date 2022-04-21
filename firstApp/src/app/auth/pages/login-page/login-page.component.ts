@@ -51,9 +51,9 @@ export class LoginPageComponent {
     return (control: AbstractControl): ValidationErrors | null => {
       const password: string = control.value;
 
-      let validationResult: boolean | WhatFailedDuringPasswordValidation = false;
+      let validationResult: true | WhatFailedDuringPasswordValidation;
 
-      const validateUsingRegex = (password: string) => {
+      const validateUsingRegex = (password: string): true | WhatFailedDuringPasswordValidation => {
         enum checkFor {
           lowerCase = '(?=.*[a-z])',
           upperCase = '(?=.*[A-Z])',
@@ -85,8 +85,8 @@ export class LoginPageComponent {
       if (validationResult === true) {
         return null;
       } else {
-        const caseMixtureFail = validationResult['upperCaseFailed'] || validationResult['lowerCaseFailed'];
-        const integerAndLetterMixtureFail =
+        const caseMixtureFail: boolean = validationResult['upperCaseFailed'] || validationResult['lowerCaseFailed'];
+        const integerAndLetterMixtureFail: boolean =
           validationResult['integerFailed'] ||
           (validationResult['upperCaseFailed'] && validationResult['lowerCaseFailed']);
         return {
