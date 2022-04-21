@@ -3,5 +3,6 @@ export interface CustomCard {
   description: string;
   thumbnailUrl: string;
   videoUrl: string;
+  date: number;
   id: number;
 }

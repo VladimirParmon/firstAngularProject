@@ -33,6 +33,7 @@ export class AdminPageComponent {
           description: this.createForm.value.description,
           thumbnailUrl: this.createForm.value.thumbnail,
           videoUrl: this.createForm.value.linkVideo,
+          date: Date.now(),
           id: Math.random() * 100 + Math.random() * 10 + Math.random() * 10,
         },
       })
