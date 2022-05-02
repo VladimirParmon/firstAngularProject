@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { VideoItem } from 'src/app/models/youtubeResponse';
+import { ThumbnailsDescription, VideoItem } from 'src/app/models/youtubeResponse';
 import { loadSingleAPIVideo } from 'src/app/redux/actions/youtube.actions';
 import { detailedVideoInfoStateData, selectErrorMessageInfo } from 'src/app/redux/selectors/youtube.selectors';
 
@@ -33,9 +33,16 @@ export class DetailedInfoPageComponent implements OnInit {
     this.detailedVideoInfoDataSubscription_imageUrl$ = this.store
       .select(detailedVideoInfoStateData)
       .subscribe((data) => {
-        this.imageUrl = data?.snippet?.thumbnails['maxres']
-          ? data?.snippet?.thumbnails['maxres'].url
-          : data?.snippet?.thumbnails['standard'].url;
+        let maxresImgUrl: ThumbnailsDescription = data?.snippet?.thumbnails['maxres'];
+        let standardImgUrl: ThumbnailsDescription = data?.snippet?.thumbnails['standard'];
+        let highImgUrl: ThumbnailsDescription = data?.snippet?.thumbnails['high'];
+        if (maxresImgUrl) {
+          this.imageUrl = maxresImgUrl?.url;
+        } else if (standardImgUrl) {
+          this.imageUrl = standardImgUrl?.url;
+        } else {
+          this.imageUrl = highImgUrl?.url;
+        }
       });
   }
 

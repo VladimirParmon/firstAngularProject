@@ -36,7 +36,7 @@ interface Thumbnails {
   [key: string]: ThumbnailsDescription;
 }
 
-interface ThumbnailsDescription {
+export interface ThumbnailsDescription {
   url: string;
   width: number;
   height: number;
