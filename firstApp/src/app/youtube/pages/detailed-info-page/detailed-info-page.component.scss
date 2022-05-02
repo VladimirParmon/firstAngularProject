@@ -1,0 +1,49 @@
+@use '../../../../styles.scss';
+
+.pageContent {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100vw;
+  height: calc(100vh - 130px);
+}
+
+.detailedInfo {
+  position: relative;
+  margin-top: 100px;
+  display: flex;
+  height: 460px;
+  width: 1200px;
+
+  .detailedInfo__img {
+    height: 100%;
+  }
+}
+
+.detailedInfo__title {
+  margin-bottom: 20px;
+}
+
+.detailedInfo__inner-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  padding: 20px;
+  background-color: styles.$primary-color;
+}
+
+app-views-and-likes-counter {
+  position: absolute;
+  bottom: 0;
+  align-self: center;
+}
+
+.detailedInfo__return-button {
+  position: absolute;
+  left: -40px;
+  top: 0;
+  width: 40px;
+  height: 90px;
+  border: none;
+}

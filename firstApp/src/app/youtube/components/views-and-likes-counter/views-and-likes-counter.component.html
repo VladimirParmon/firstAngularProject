@@ -1,0 +1,6 @@
+<div class="counter">
+  <div class="counter__elem" *ngFor="let part of partsOfTheCounter">
+    <img class="counter__img" src="../../../../assets/svg/{{part.imgName}}.svg">
+    {{ part.data }}
+  </div>
+</div>
